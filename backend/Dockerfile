@@ -1,6 +1,5 @@
 FROM python:3.12
 
-
 WORKDIR /code
 COPY ./requirements.txt /code/requirements.txt
 
@@ -12,5 +11,5 @@ COPY ./models /code/models
 COPY ./services /code/services
 COPY ./config /code/config
 
-
-CMD ["fastapi", "run", "app/main.py", "--proxy-headers", "--port", "9000"]
+EXPOSE 9000
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "9000"]

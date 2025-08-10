@@ -18,9 +18,7 @@ class BucketService:
         else:
             print(f"Bucket '{bucket_name}' does not exist.")
 
-
-
-    def upload_file_to_minio(self,bucket_name, file_path, object_name=None):
+    def upload_file_to_minio(self, bucket_name, file_path, object_name=None):
         """
         Upload a file to a MinIO bucket.
 
@@ -42,8 +40,7 @@ class BucketService:
             print(f"Error uploading file: {e}")
             return False
 
-
-    def list_files_in_bucket(self,bucket_name):
+    def list_files_in_bucket(self, bucket_name):
         """
         List files in a MinIO bucket.
 
@@ -59,8 +56,7 @@ class BucketService:
             print(f"Error listing files: {e}")
             return []
 
-
-    def delete_file_from_minio(self,bucket_name, object_name):
+    def delete_file_from_minio(self, bucket_name, object_name):
         """
         Delete a file from a MinIO bucket.
 
@@ -76,7 +72,7 @@ class BucketService:
             print(f"Error deleting file: {e}")
             return False
 
-    def get_file_url(self,bucket_name, object_name, expiry=3600):
+    def get_file_url(self, bucket_name, object_name, expiry=3600):
         """
         Generate a presigned URL for a file in a MinIO bucket.
 
@@ -86,14 +82,16 @@ class BucketService:
         :return: Presigned URL for the file.
         """
         try:
-            url = minio_client.presigned_get_object(bucket_name, object_name, expires=expiry)
+            url = minio_client.presigned_get_object(
+                bucket_name, object_name, expires=expiry
+            )
             print(f"Presigned URL for '{object_name}': {url}")
             return url
         except Exception as e:
             print(f"Error generating presigned URL: {e}")
             return None
-    
-    def download_file_from_minio(self,bucket_name, object_name, file_path):
+
+    def download_file_from_minio(self, bucket_name, object_name, file_path):
         """
         Download a file from a MinIO bucket.
 
@@ -104,9 +102,10 @@ class BucketService:
         """
         try:
             minio_client.fget_object(bucket_name, object_name, file_path)
-            print(f"File '{object_name}' downloaded from bucket '{bucket_name}' to '{file_path}'.")
+            print(
+                f"File '{object_name}' downloaded from bucket '{bucket_name}' to '{file_path}'."
+            )
             return True
         except Exception as e:
             print(f"Error downloading file: {e}")
             return False
-    
