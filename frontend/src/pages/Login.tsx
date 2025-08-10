@@ -31,7 +31,6 @@ const FormComponent = () => {
   >(API_ENDPOINTS.LOGIN_ENDPOINT, REQUEST_METHODS.POST);
 
   const onSubmit = (values: z.infer<typeof LoginFormSchema>) => {
-    console.log(values);
     mutate(values, {
       onSuccess: (response) => {
         writeCredentials(response);

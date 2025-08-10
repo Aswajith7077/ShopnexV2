@@ -23,7 +23,6 @@ const Search = () => {
   
   
   useEffect(() => {
-    console.log("Search Text: ", context.searchText);
     const request:SearchProductRequestType = {
         searchText:context.searchText ?? '',
         isFilterApplied:false,

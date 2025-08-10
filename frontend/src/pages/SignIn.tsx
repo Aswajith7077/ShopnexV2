@@ -30,7 +30,6 @@ const FormComponent = () => {
   });
 
   const onSubmit = (values: z.infer<typeof SigninFormSchema>) => {
-    console.log(values);
 
     const request = {
       username: values.username,
@@ -40,9 +39,8 @@ const FormComponent = () => {
     };
 
     mutate(request, {
-      onSuccess: (response) => {
-        // toast("Sign In Successful")
-        console.log(response);
+      onSuccess: () => {
+        toast("Sign In Successful")
         navigate("/login");
       },
       onError: (error) => {

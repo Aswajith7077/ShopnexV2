@@ -2,7 +2,6 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { API_ENDPOINTS } from "@/constants/api.enpoints";
 import { useApiQuery } from "@/hooks/useApiService";
 import { ProductViewResponseType } from "@/types/api/products_view.type";
-import { useEffect } from "react";
 import { useOutletContext } from "react-router-dom";
 import Rating from "@/components/search/Rating";
 import ProductDescription from "@/components/product_view/Description";
@@ -19,13 +18,6 @@ const ProductsView = () => {
   const { data } = useApiQuery<
     ProductViewResponseType
   >(API_ENDPOINTS.GET_DETAILS_ENDPOINT, { id: context.product_name });
-
-  useEffect(
-    () => {
-      console.log(data);
-    },
-    [data]
-  );
 
   if (data)
     return <ScrollArea className="flex p-5 overflow-auto">
