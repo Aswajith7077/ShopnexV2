@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-debug = os.getenv("DEBUG") == "True"
+debug = not (os.getenv("DEBUG") == "False")
 jwt_encode_algorithm = os.getenv("JWT_ENCODE_ALGORITHM")
 jwt_access_token_secret_key = os.getenv("JWT_ACCESS_TOKEN_SECRET_KEY")
 jwt_refresh_token_secret_key = os.getenv("JWT_REFRESH_TOKEN_SECRET_KEY")
