@@ -45,12 +45,12 @@ export const ProductCard = ({ content }: ProductCardPropType) => {
 const PopularItems = () => {
   const { data } = useApiQuery<
     ListProductsResponseType[]
-  >(API_ENDPOINTS.GET_PRODUCTS_ENDPOINT, { limit: 10 });
+  >(API_ENDPOINTS.GET_PRODUCTS_ENDPOINT, { limit: 12 });
 
   return (
-    <div>
+    <div className="flex flex-col mx-15" >
       <h1 className="font-semibold text-3xl py-10">Popular Items</h1>
-      <div className="grid grid-cols-5 gap-5">
+      <div className="grid grid-cols-4 gap-5">
         {data &&
           data.length &&
           data.map((value, key) => {

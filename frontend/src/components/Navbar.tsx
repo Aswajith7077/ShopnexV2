@@ -67,7 +67,7 @@ const Navbar = () => {
         <CommandShortcut>⌘K</CommandShortcut>
       </Button>
 
-      <CommandDialog open={open} onOpenChange={setOpen}>
+      <CommandDialog open={open} onOpenChange={setOpen} className="w-[1000px] h-[500px]">
         <CommandInput 
           placeholder="Type and press Enter to search..." 
           value={searchValue}

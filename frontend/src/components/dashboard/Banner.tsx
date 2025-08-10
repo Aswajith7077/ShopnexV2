@@ -12,6 +12,7 @@ const Banner = () => {
           delay: 2000,
         }),
       ]}
+      className="mx-15"
     >
       <CarouselContent>
         {Array.from({ length: 5 }).map((_, index) => (

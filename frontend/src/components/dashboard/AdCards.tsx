@@ -35,7 +35,7 @@ const AdCard = ({content}:AdCardPropType) => {
 
 const AdCards = () => {
   return (
-    <div className="flex flex-row gap-5 ">
+    <div className="flex flex-row gap-5 mx-15">
       {ad_content.map((value,key) => {
         return <AdCard content={value} key={key}/>
       })}

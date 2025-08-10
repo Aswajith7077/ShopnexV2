@@ -38,9 +38,9 @@ const Footer = () => {
       {/* Quick Links */}
       <div className="flex flex-col p-5 md:flex-row justify-center mt-5 space-x-0 md:space-x-8 space-y-4 md:space-y-0">
         <div className="flex flex-col w-[50%] md:w-1/3">
-          <h2 className="text-2xl px-4 text-left font-semibold">ShopNex</h2>
+          <h2 className="text-2xl px-4 text-left font-semibold">Zevrin</h2>
           <p className="text-sm mt-5 px-4 text-left text-gray-400">
-            ShopNex is your one-stop shop for all your needs. We offer a wide
+            Zevrin is your one-stop shop for all your needs. We offer a wide
             range of products and services to make your shopping experience
             seamless and enjoyable.
           </p>
@@ -76,7 +76,7 @@ const Footer = () => {
           </h2>
           <p className="font-open-sans text-[14px] text-gray-400">
             By this you can stay up to date with the latest tech and updates
-            with shopnex
+            with Zevrin
           </p>
           <div className="flex flex-row justify-center items-center gap-5">
             <Input
@@ -91,7 +91,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="flex flex-row w-[95%] items-center justify-center pt-7 my-3">
-        <p className="text-sm">{"© 2023 ShopNex. All rights reserved."}</p>
+        <p className="text-sm">{"© 2023 Zevrin. All rights reserved."}</p>
       </div>
     </footer>
   );

@@ -42,7 +42,7 @@ const SubCategoryCard = ({
 const FeaturedCategories = () => {
   const [current, setCurrent] = useState<number>(0);
   return (
-    <div className="flex flex-col my-10 justify-center">
+    <div className="flex flex-col my-10 justify-center mx-15">
       <div className="flex flex-row justify-between mx-5">
         <h1 className="font-semibold text-4xl ">Featured Categories</h1>
         <CategoryButtons state={current} setState={setCurrent} />

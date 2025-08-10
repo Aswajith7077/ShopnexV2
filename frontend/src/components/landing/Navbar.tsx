@@ -14,8 +14,7 @@ import { Button } from "@/components/ui/button";
 import { contents } from "@/constants/landing/navbar";
 import { ContentType } from "@/types/landing/navbar.type";
 
-
-const getMenuContent = (content:ContentType) => {
+const getMenuContent = (content: ContentType) => {
   return content.type === "double_column" ? (
     <NavigationMenuContent className="flex flex-col p-4 font-open-sans text-lg">
       <ul className="grid w-[400px] gap-3 p-4 md:w-[700px] md:grid-cols-2 lg:w-[700px] ">
@@ -127,11 +126,10 @@ const ListItem = React.forwardRef<
 });
 ListItem.displayName = "ListItem";
 
-
 const Navbar = () => {
   return (
     <section className="flex flex-row items-center justify-between w-full px-20 py-10 text-white">
-      <h1 className="text-3xl font-bold mb-4">Shopnex</h1>
+      <h1 className="text-3xl font-bold mb-4">Zevrin</h1>
       <NavLinks />
       <div className="flex flex-row gap-4">
         <Button variant="default" className="p-5 px-7 text-md">
@@ -142,9 +140,6 @@ const Navbar = () => {
         </Button>
       </div>
     </section>
-
-    
-
   );
 };
 

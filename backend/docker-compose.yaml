@@ -4,8 +4,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: shopnex-backend
-    container_name: shopnex-backend
+    image: zervrin-backend
+    container_name: zervrin-backend
     ports:
       - "8000:9000"  # Host port 8000 -> container port 9000
     env_file:

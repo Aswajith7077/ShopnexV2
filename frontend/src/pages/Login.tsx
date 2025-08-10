@@ -12,7 +12,7 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormMessage
+  FormMessage,
 } from "@/components/ui/form";
 import { useApiMutation, writeCredentials } from "@/hooks/useApiService";
 import { API_ENDPOINTS } from "@/constants/api.enpoints";
@@ -22,7 +22,7 @@ import { LoginRequestType, LoginResponseType } from "@/types/api/auth.type";
 const FormComponent = () => {
   const navigate = useNavigate();
   const form = useForm<z.infer<typeof LoginFormSchema>>({
-    resolver: zodResolver(LoginFormSchema)
+    resolver: zodResolver(LoginFormSchema),
   });
 
   const { mutate, isLoading } = useApiMutation<
@@ -33,10 +33,10 @@ const FormComponent = () => {
   const onSubmit = (values: z.infer<typeof LoginFormSchema>) => {
     console.log(values);
     mutate(values, {
-      onSuccess: response => {
+      onSuccess: (response) => {
         writeCredentials(response);
         navigate("/home/dashboard");
-      }
+      },
     });
   };
 
@@ -44,7 +44,7 @@ const FormComponent = () => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex h-screen flex-col justify-between w-full lg:w-1/2 border bg-slate-300 dark:bg-slate-950 py-20"
+        className="flex h-screen flex-col justify-between w-full lg:w-1/2 bg-slate-300 dark:bg-black py-20"
       >
         <div className="flex flex-row w-full px-20 lg:px-[22%] justify-end">
           <Button
@@ -59,7 +59,7 @@ const FormComponent = () => {
           <img src="#" alt="" />
 
           <h2 className="font-semibold text-3xl w-full">
-            ShopNex Welcomes you{" "}
+            Zevrin Welcomes you{" "}
           </h2>
           <p className="w-full mb-5 dark:text-gray-400 text-sm">
             Enter your credentials
@@ -68,35 +68,37 @@ const FormComponent = () => {
           <FormField
             name={"username"}
             control={form.control}
-            render={({ field }) =>
+            render={({ field }) => (
               <FormItem>
                 <FormControl>
                   <Input
                     placeholder="Username"
                     type="name"
-                    className="bg-slate-900 py-5"
+                    className="bg-slate-900 py-6 px-6 rounded-lg text-md"
                     {...field}
                   />
                 </FormControl>
                 <FormMessage />
-              </FormItem>}
+              </FormItem>
+            )}
           />
 
           <FormField
             name={"password"}
             control={form.control}
-            render={({ field }) =>
+            render={({ field }) => (
               <FormItem>
                 <FormControl>
                   <Input
                     placeholder="Password"
-                    className="bg-slate-900 py-5"
+                    className="bg-slate-900 py-6 px-6 rounded-lg text-md"
                     type="password"
                     {...field}
                   />
                 </FormControl>
                 <FormMessage />
-              </FormItem>}
+              </FormItem>
+            )}
           />
 
           <div className="flex flex-row items-center w-full justify-between pl-2">
@@ -122,7 +124,10 @@ const FormComponent = () => {
             </Label>
             <div className="hidden border-slate-400 md:inline w-1/3 border h-0" />
           </div>
-          <Button variant={"outline"} className="py-5 w-full cursor-pointer">
+          <Button
+            variant={"outline"}
+            className="py-6 rounded-full border-gray-900 w-full cursor-pointer"
+          >
             Continue with Google
           </Button>
         </div>
@@ -149,9 +154,9 @@ const FormComponent = () => {
 const Login = () => {
   document.body.classList.add("dark");
   return (
-    <main className="flex flex-row w-screen h-screen bg-gray-400 dark:bg-slate-900">
+    <main className="flex flex-row w-screen h-screen bg-gray-400 dark:bg-gradient-to-br dark:from-slate-950 to-slate-900 ">
       <div className="hidden lg:flex flex-col justify-between lg:w-1/2 p-15">
-        <h2 className="text-2xl font-semibold ">Shopnex</h2>
+        <h2 className="text-2xl font-semibold ">Zevrin</h2>
         <p className="font-semibold text-lg">
           This library has saved me countless hours of work and helped me
           deliver stunning designs to my clients faster than ever before.
