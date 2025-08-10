@@ -6,7 +6,7 @@ from app.routers import products, users
 
 app = FastAPI(root_path="/api")
 
-origins = ["https://zevring.vercel.app"]
+origins = ["https://zevrin.vercel.app/"]
 
 app.add_middleware(
     CORSMiddleware,
