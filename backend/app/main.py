@@ -1,12 +1,13 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from config.config import front_end_dev_url,front_end_prod_url
+
 from app.internal import auth
 from app.routers import products, users
+from config.config import front_end_dev_url, front_end_prod_url
 
 app = FastAPI(root_path="/api")
 
-origins = [front_end_prod_url,front_end_dev_url]
+origins = [front_end_prod_url, front_end_dev_url]
 
 app.add_middleware(
     CORSMiddleware,
