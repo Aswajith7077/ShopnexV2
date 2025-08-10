@@ -7,14 +7,12 @@ Shopnex Backend is a scalable and high-performance API developed using FastAPI, 
 - **MongoDB**: NoSQL database following MVC architecture.
 - **JWT Authentication**: Secure authentication and authorization.
 - **Docker**: Containerized for portability and scalability.
-- **Azure Deployment**: Hosted on Azure Container Apps for cloud scalability.
 
 ## Prerequisites
 Ensure you have the following installed:
 - Python 3.8+
 - MongoDB
 - Docker
-- Azure CLI (for deployment)
 
 ## Installation
 1. **Clone the Repository**
