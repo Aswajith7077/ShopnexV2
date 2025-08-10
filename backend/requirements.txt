@@ -33,6 +33,7 @@ matplotlib-inline==0.1.7
 mdurl==0.1.2
 minio==7.2.15
 mypy_extensions==1.1.0
+nest-asyncio==1.6.0
 packaging==25.0
 parso==0.8.4
 passlib==1.7.4

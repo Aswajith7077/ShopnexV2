@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-
+debug = os.getenv("DEBUG") == "True"
 jwt_encode_algorithm = os.getenv("JWT_ENCODE_ALGORITHM")
 jwt_access_token_secret_key = os.getenv("JWT_ACCESS_TOKEN_SECRET_KEY")
 jwt_refresh_token_secret_key = os.getenv("JWT_REFRESH_TOKEN_SECRET_KEY")
@@ -26,8 +26,9 @@ collection_user = os.getenv("COLLECTION_USER")
 collection_cart = os.getenv("COLLECTION_CART")
 collection_promotion = os.getenv("COLLECTION_PROMOTION")
 
-minio_endpoint = f"{os.getenv("MINIO_SERVER")}:{os.getenv('MINIO_PORT')}"
+minio_server = (
+    os.getenv("MINIO_PROD_SERVER") if not debug else os.getenv("MINIO_SERVER")
+)
+minio_port = os.getenv("MINIO_PORT")
 minio_access_key = os.getenv("MINIO_ROOT_USER")
 minio_secret_key = os.getenv("MINIO_ROOT_PASSWORD")
-
-debug = os.getenv("DEBUG") == "True"
