@@ -15,6 +15,9 @@ jwt_refresh_token_expiry_time_minutes: int = int(
     os.getenv("JWT_REFRESH_TOKEN_EXPIRE_TIME_MINUTES")
 )
 
+front_end_prod_url = os.getenv("FRONT_END_PROD_URL")
+front_end_dev_url = os.getenv("FRONT_END_DEV_URL")
+
 db_password = os.getenv("DB_PASSWORD")
 db_user = os.getenv("DB_USER")
 db_host = os.getenv("DB_HOST")
