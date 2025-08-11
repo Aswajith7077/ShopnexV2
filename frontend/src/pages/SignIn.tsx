@@ -11,6 +11,7 @@ import { Label } from "@/components/ui/label";
 import { Toaster } from "@/components/ui/sonner";
 import { API_ENDPOINTS } from "@/constants/api.enpoints";
 import { REQUEST_METHODS } from "@/constants/api.enum";
+import { AppName, LogoIcon } from "@/constants/app.details";
 import { SigninFormSchema } from "@/data/api/auth.data";
 import { useApiMutation } from "@/hooks/useApiService";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -30,7 +31,6 @@ const FormComponent = () => {
   });
 
   const onSubmit = (values: z.infer<typeof SigninFormSchema>) => {
-
     const request = {
       username: values.username,
       fullname: values.fullname,
@@ -40,7 +40,7 @@ const FormComponent = () => {
 
     mutate(request, {
       onSuccess: () => {
-        toast("Sign In Successful")
+        toast("Sign In Successful");
         navigate("/login");
       },
       onError: (error) => {
@@ -207,7 +207,10 @@ const SignIn = () => {
     <main className="flex flex-row w-screen h-screen bg-gradient-to-tr from-slate-900 to-slate-950">
       <FormComponent />
       <div className="hidden lg:flex flex-col justify-between lg:w-1/2 p-15">
-        <h2 className="text-2xl font-semibold ">Zevrin</h2>
+        <div className="flex flex-row items-center gap-3">
+          <img src={LogoIcon} className="w-15 aspect-square " />
+          <h1 className="text-3xl font-bold ">{AppName}</h1>
+        </div>
         <p className="font-semibold text-lg">
           This library has saved me countless hours of work and helped me
           deliver stunning designs to my clients faster than ever before.

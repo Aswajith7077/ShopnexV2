@@ -18,6 +18,7 @@ import { useApiMutation, writeCredentials } from "@/hooks/useApiService";
 import { API_ENDPOINTS } from "@/constants/api.enpoints";
 import { REQUEST_METHODS } from "@/constants/api.enum";
 import { LoginRequestType, LoginResponseType } from "@/types/api/auth.type";
+import { AppName, LogoIcon } from "@/constants/app.details";
 
 const FormComponent = () => {
   const navigate = useNavigate();
@@ -155,7 +156,10 @@ const Login = () => {
   return (
     <main className="flex flex-row w-screen h-screen bg-gray-400 dark:bg-gradient-to-br dark:from-slate-950 to-slate-900 ">
       <div className="hidden lg:flex flex-col justify-between lg:w-1/2 p-15">
-        <h2 className="text-2xl font-semibold ">Zevrin</h2>
+        <div className="flex flex-row items-center gap-3">
+          <img src={LogoIcon} className="w-15 aspect-square " />
+          <h1 className="text-3xl font-bold ">{AppName}</h1>
+        </div>
         <p className="font-semibold text-lg">
           This library has saved me countless hours of work and helped me
           deliver stunning designs to my clients faster than ever before.

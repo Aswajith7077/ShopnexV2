@@ -13,6 +13,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { contents } from "@/constants/landing/navbar";
 import { ContentType } from "@/types/landing/navbar.type";
+import { AppName, LogoIcon } from "@/constants/app.details";
 
 const getMenuContent = (content: ContentType) => {
   return content.type === "double_column" ? (
@@ -129,7 +130,10 @@ ListItem.displayName = "ListItem";
 const Navbar = () => {
   return (
     <section className="flex flex-row items-center justify-between w-full px-20 py-10 text-white">
-      <h1 className="text-3xl font-bold mb-4">Zevrin</h1>
+      <div className="flex flex-row items-center gap-3">
+        <img src={LogoIcon} className="w-15 aspect-square "/>
+        <h1 className="text-3xl font-bold ">{AppName}</h1>
+      </div>
       <NavLinks />
       <div className="flex flex-row gap-4">
         <Button variant="default" className="p-5 px-7 text-md">

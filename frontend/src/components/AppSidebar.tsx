@@ -10,6 +10,7 @@ import { sidebar_data } from "@/data/sidebar.data";
 import { SidebarUtilities } from "@/components/sidebar/SidebarUtilities";
 import { SidebarProfile } from "@/components/sidebar/SidebarProfile";
 import { Link } from "react-router-dom";
+import { AppName, LogoIcon } from "@/constants/app.details";
 
 const AppSidebar = () => {
   document.body.classList.add("dark");
@@ -19,9 +20,14 @@ const AppSidebar = () => {
         <Link to="/" className="w-full">
           <Button
             variant={"ghost"}
-            className="py-8 text-left justify-start px-10 cursor-pointer text-xl"
+            className="py-8 text-left justify-center w-full cursor-pointer text-xl"
           >
-            Zevrin
+            <div className="flex flex-row px-4 items-center">
+              <img src={LogoIcon} className="w-12 py-2 aspect-square " />
+              <h2 className="text-2xl px-4 text-left font-semibold">
+                {AppName}
+              </h2>
+            </div>
           </Button>
         </Link>
       </SidebarHeader>

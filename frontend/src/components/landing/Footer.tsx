@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
+import { AppName, LogoIcon } from "@/constants/app.details";
 
 const contents = [
   {
@@ -38,7 +39,10 @@ const Footer = () => {
       {/* Quick Links */}
       <div className="flex flex-col p-5 md:flex-row justify-center mt-5 space-x-0 md:space-x-8 space-y-4 md:space-y-0">
         <div className="flex flex-col w-[50%] md:w-1/3">
-          <h2 className="text-2xl px-4 text-left font-semibold">Zevrin</h2>
+          <div className="flex flex-row px-4 items-center">
+            <img src={LogoIcon} className="w-12 aspect-square "/>
+            <h2 className="text-2xl px-4 text-left font-semibold">{AppName}</h2>
+          </div>
           <p className="text-sm mt-5 px-4 text-left text-gray-400">
             Zevrin is your one-stop shop for all your needs. We offer a wide
             range of products and services to make your shopping experience
