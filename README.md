@@ -16,6 +16,7 @@
 [![Backend](https://img.shields.io/badge/Backend-FastAPI-%23009688)](#)
 [![Database](https://img.shields.io/badge/Database-MongoDB-%2347A248)](#)
 [![Containerized](https://img.shields.io/badge/Container-Docker-%232496ED)](#)
+[![License](https://img.shields.io/badge/License-Proprietary-red)](#license)
 
 
 ---
@@ -71,3 +72,9 @@ Zevrin/
 Developed by [Aswajith S](https://github.com/Aswajith7077)
 
 ---
+
+## License
+© 2025 Aswajith S. All rights reserved.  
+This project is proprietary software. Unauthorized use, copying, modification, or distribution is prohibited.
+
+
