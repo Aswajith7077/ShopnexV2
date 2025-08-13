@@ -1,70 +1,73 @@
-# Shopnex Backend
+# Zevrin
 
-Shopnex Backend is a scalable and high-performance API developed using FastAPI, designed to support e-commerce applications. It utilizes MongoDB for data storage following the MVC architecture, ensures secure authentication and authorization via JWT, and is fully containerized using Docker for seamless deployment on Azure Container Apps.
+<table border="0">
+<tr>
+<td width="120">
+  <img src="https://raw.githubusercontent.com/Aswajith7077/Zevrin/main/frontend/public/Zevrin.svg" alt="Zevrin Logo" width="120"/>
+</td>
+<td>
+  <b>A scalable backend for trading consumer goods with dealer connections and credit score integration.</b>
+</td>
+</tr>
+</table>
+
+[![Repo Type](https://img.shields.io/badge/Repo-Monorepo-blue)](#)
+[![Frontend](https://img.shields.io/badge/Frontend-React-%2361DAFB)](#)
+[![Backend](https://img.shields.io/badge/Backend-FastAPI-%23009688)](#)
+[![Database](https://img.shields.io/badge/Database-MongoDB-%2347A248)](#)
+[![Containerized](https://img.shields.io/badge/Container-Docker-%232496ED)](#)
+
+
+---
+
+## Overview
+
+**Zevrin** is a **mono repository** containing both the backend and frontend codebases for an online marketplace where buyers, sellers, and dealers can trade consumer goods on a common platform.
+
+The system integrates **credit scores** to enable trust-based transactions and provides dealer profiles so users can connect with top-rated dealers.
+
+Built with **FastAPI**, it follows the **MVC architecture** for maintainability, uses **MongoDB** for storage, and **JWT authentication** for secure access.
+Fully containerized with **Docker**, it can be deployed easily on any compatible environment.
+
+---
 
 ## Features
-- **FastAPI**: High-performance Python web framework.
-- **MongoDB**: NoSQL database following MVC architecture.
-- **JWT Authentication**: Secure authentication and authorization.
-- **Docker**: Containerized for portability and scalability.
 
-## Prerequisites
-Ensure you have the following installed:
-- Python 3.8+
-- MongoDB
-- Docker
+* **Trading Platform** – Connect buyers, sellers, and dealers.
+* **Credit Score Integration** – Trust-based transactions.
+* **Dealer Profiles** – View top dealers and their details.
+* **MVC Architecture** – Clean and scalable project structure.
+* **JWT Authentication** – Secure login and access control.
 
-## Installation
-1. **Clone the Repository**
-   ```bash
-   git clone https://github.com/your-repo/shopnex-backend.git
-   cd shopnex-backend
-   ```
-2. **Create and Activate Virtual Environment**
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows use: venv\Scripts\activate
-   ```
-3. **Install Dependencies**
-   ```bash
-   pip install -r requirements.txt
-   ```
-4. **Set Up Environment Variables**
-   Create a `.env` file and add:
-   ```env
-   MONGO_URI="your_mongodb_connection_string"
-   SECRET_KEY="your_jwt_secret_key"
-   ```
-5. **Run the Application**
-   ```bash
-   uvicorn main:app --host 0.0.0.0 --port 8000 --reload
-   ```
+---
 
-## API Endpoints
-### Authentication
-- `POST /auth/register` - Register a new user
-- `POST /auth/login` - User login
-- `GET /auth/profile` - Fetch user profile (Requires JWT)
+## Tech Stack
 
-### Products
-- `GET /products` - Get all products
-- `POST /products` - Add a new product (Admin only)
-- `GET /products/{id}` - Get product details
-- `PUT /products/{id}` - Update product (Admin only)
-- `DELETE /products/{id}` - Delete product (Admin only)
+* **Frontend**: React
+* **Backend**: FastAPI
+* **Database**: MongoDB
+* **Containerization**: Docker
 
-## Docker Setup
-1. **Build Docker Image**
-   ```bash
-   docker build -t shopnex-backend .
-   ```
-2. **Run Docker Container**
-   ```bash
-   docker run -d -p 8000:8000 --env-file .env shopnex-backend
-   ```
+---
 
-## License
-This project is licensed under the MIT License.
+## Project Structure
+
+```
+Zevrin/
+│── frontend/           # React frontend
+│── backend/            # FastAPI backend
+│   ├── app/            # Application code (MVC)
+│   ├── models/         # Data models
+│   ├── services/       # Business logic
+│   ├── requirements.txt
+│   ├── Dockerfile
+│   ├── .env.example
+```
+
+---
 
 ## Author
-Developed by [Aswajith S](https://github.com/Aswajith7077).
+
+Developed by [Aswajith S](https://github.com/Aswajith7077)
+
+---
