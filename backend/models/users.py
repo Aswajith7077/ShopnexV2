@@ -11,6 +11,5 @@ class User(BaseModel):
 
 class UserLogin(BaseModel):
 
-    email:str = Field(title = "email")
     username: str = Field(title="username")
     password: str = Field(title="password")
