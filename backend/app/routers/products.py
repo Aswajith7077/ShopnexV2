@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Body, Query
+from fastapi import APIRouter, Body, Depends, Query
 
 from app.dependencies import check_access_token
 from models.products import SearchFormData
@@ -10,7 +10,7 @@ from services.application.products import (
 
 router = APIRouter(
     prefix="/products",
-    # dependencies = [Depends(check_access_token)],
+    dependencies=[Depends(check_access_token)],
     tags=["Products"],
 )
 

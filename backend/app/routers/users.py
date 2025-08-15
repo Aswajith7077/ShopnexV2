@@ -1,14 +1,12 @@
-from typing import Annotated
-
-from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException, Response, status
+from fastapi import APIRouter, Depends, HTTPException, Response, status
 
 from app.dependencies import check_access_token
 from models.users import User
-from services.application.users import find_single_user, insert_user, update_user
+from services.application.users import find_single_user, update_user
 
 router = APIRouter(
     prefix="/users",
-    # dependencies = [Depends(check_access_token)],
+    dependencies=[Depends(check_access_token)],
     tags=["Users"],
 )
 
