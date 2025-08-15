@@ -1,6 +1,5 @@
 
 
-
 type SigninRequesttype = {
     email:string,
     username:string,
@@ -14,6 +13,7 @@ type LoginRequestType = {
 }
 
 type LoginResponseType = {
+    email:string,
     fullname:string,
     username:string,
     accessToken:string,

@@ -8,6 +8,7 @@ import Home from "@/pages/Home";
 import Landing from "@/pages/Landing";
 import Login from "@/pages/Login";
 import ProductsView from "@/pages/ProductsView";
+import Profile from "@/pages/Profile";
 import SignIn from "@/pages/SignIn";
 import { createBrowserRouter } from "react-router-dom";
 
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
       {
         path:"products_view",
         element:<ProductsView />
+      },
+      {
+        path:"profile",
+        element:<Profile/>
       }
     ]
   }

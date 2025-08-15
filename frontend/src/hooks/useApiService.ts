@@ -21,7 +21,7 @@ const getAuthToken = (): string | null => {
   }
 };
 
-const readCredentials = () => {
+const readCredentials = ():LoginResponseType | null => {
   try {
     const authStorage = localStorage.getItem(ELOCAL_STORAGE.AUTH_STORE) ?? "";
     const { state } = JSON.parse(decrypt(authStorage));

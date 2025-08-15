@@ -1,8 +1,10 @@
+import { JSX } from "react";
 
 
 type SubcontentType = {
     title: string;
     url: string;
+    icon: JSX.Element;
     description: string;
 }
 

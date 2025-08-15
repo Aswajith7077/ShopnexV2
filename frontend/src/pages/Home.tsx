@@ -1,6 +1,7 @@
 import AppSidebar from "@/components/AppSidebar";
 import Navbar from "@/components/Navbar";
 import { SidebarProvider } from "@/components/ui/sidebar";
+import { AuthContextProvider } from "@/context/auth.context";
 import { HomeContext } from "@/context/home.context";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useState } from "react";
@@ -12,22 +13,24 @@ const Home = () => {
 
   return (
     <QueryClientProvider client={client}>
-      <HomeContext.Provider
-        value={{
-          searchText:searchText,
-          setSearchText:setSearchText
-        }}
-      >
-        <SidebarProvider>
-          <div className="flex flex-row w-screen h-screen">
-            <AppSidebar />
-            <div className="flex flex-col w-full h-screen">
-              <Navbar />
-              <Outlet context={{ searchText }} />
+      <AuthContextProvider>
+        <HomeContext.Provider
+          value={{
+            searchText: searchText,
+            setSearchText: setSearchText,
+          }}
+        >
+          <SidebarProvider>
+            <div className="flex flex-row w-screen h-screen">
+              <AppSidebar />
+              <div className="flex flex-col w-full h-screen">
+                <Navbar />
+                <Outlet context={{ searchText }} />
+              </div>
             </div>
-          </div>
-        </SidebarProvider>
-      </HomeContext.Provider>
+          </SidebarProvider>
+        </HomeContext.Provider>
+      </AuthContextProvider>
     </QueryClientProvider>
   );
 };

@@ -80,6 +80,7 @@ async def login_user(form_data: UserLogin):
     return {
         "username": form_data.username,
         "fullname": user_data["fullname"],
+        "email": form_data.email,
         "access_token": access_token,
         "refresh_token": refresh_token,
     }

@@ -20,27 +20,29 @@ const getMenuContent = (content: ContentType) => {
     <NavigationMenuContent className="flex flex-col p-4 font-open-sans text-lg">
       <ul className="grid w-[400px] gap-3 p-4 md:w-[700px] md:grid-cols-2 lg:w-[700px] ">
         {content?.subcontents.map((subcontent) => (
-          <ListItem
-            key={subcontent.title}
-            title={subcontent.title}
-            href={subcontent.url}
-            className="text-xl font-semibold"
-          >
-            {subcontent.description}
-          </ListItem>
+          <div className="flex flex-row items-center gap-4 w-full">
+            {subcontent.icon}
+            <ListItem
+              key={subcontent.title}
+              title={subcontent.title}
+              href={subcontent.url}
+              className="text-xl font-semibold w-full"
+            >
+              {subcontent.description}
+            </ListItem>
+          </div>
         ))}
       </ul>
     </NavigationMenuContent>
   ) : (
     <NavigationMenuContent>
-      <ul className="grid gap-3 p-4 h-[350px] md:w-[600px] lg:w-[600px] lg:grid-cols-[.75fr_1fr]">
+      <ul className="grid gap-3 p-4 h-[350px] md:w-[600px] lg:w-[650px] lg:grid-cols-[.75fr_1fr]">
         <li className="row-span-3">
           <NavigationMenuLink asChild>
             <a
               className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
               href="/"
             >
-              {/* <Icons.logo className="h-6 w-6" /> */}
               <div className="mb-2 mt-4 text-lg font-medium">
                 Try our New Agent
               </div>
@@ -51,14 +53,17 @@ const getMenuContent = (content: ContentType) => {
           </NavigationMenuLink>
         </li>
         {content?.subcontents.map((subcontent) => (
-          <ListItem
-            key={subcontent.title}
-            title={subcontent.title}
-            href={subcontent.url}
-            className="text-xl font-semibold"
-          >
-            {subcontent.description}
-          </ListItem>
+          <div className="flex flex-row items-center gap-4 w-full">
+            {subcontent.icon}
+            <ListItem
+              key={subcontent.title}
+              title={subcontent.title}
+              href={subcontent.url}
+              className="text-xl font-semibold w-full"
+            >
+              {subcontent.description}
+            </ListItem>
+          </div>
         ))}
       </ul>
     </NavigationMenuContent>
@@ -131,17 +136,21 @@ const Navbar = () => {
   return (
     <section className="flex flex-row items-center justify-between w-full px-20 py-10 text-white">
       <div className="flex flex-row items-center gap-3">
-        <img src={LogoIcon} className="w-15 aspect-square "/>
+        <img src={LogoIcon} className="w-15 aspect-square " />
         <h1 className="text-3xl font-bold ">{AppName}</h1>
       </div>
       <NavLinks />
       <div className="flex flex-row gap-4">
-        <Button variant="default" className="p-5 px-7 text-md">
-          <Link to="/login">Login</Link>
-        </Button>
-        <Button variant="secondary" className="p-5 px-7 text-md ">
-          <Link to="/signup">Sign Up</Link>
-        </Button>
+        <Link to="/login">
+          <Button variant="default" className="p-5 px-7 text-md">
+            Login
+          </Button>
+        </Link>
+        <Link to="/signup">
+          <Button variant="secondary" className="p-5 px-7 text-md ">
+            Sign Up
+          </Button>
+        </Link>
       </div>
     </section>
   );

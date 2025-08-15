@@ -23,6 +23,7 @@ import {
   SidebarMenuItem,
   useSidebar
 } from "@/components/ui/sidebar";
+import { useNavigate } from "react-router-dom";
 
 export function SidebarProfile({
   profile
@@ -33,6 +34,7 @@ export function SidebarProfile({
   };
 }) {
   const { isMobile } = useSidebar();
+  const navigate = useNavigate();
 
   return (
     <SidebarMenu>
@@ -89,7 +91,7 @@ export function SidebarProfile({
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={() => navigate('/home/profile')}>
                 <BadgeCheck />
                 Account
               </DropdownMenuItem>
@@ -103,7 +105,7 @@ export function SidebarProfile({
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem variant="destructive">
               <LogOut />
               Log out
             </DropdownMenuItem>
