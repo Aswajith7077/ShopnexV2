@@ -6,6 +6,10 @@ export MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD:-minioadmin}
 export MINIO_CONSOLE_ADDRESS=${MINIO_CONSOLE_ADDRESS:-:9001}
 export MINIO_ADDRESS=${MINIO_ADDRESS:-:9000}
 
+# MinIO Console reverse proxy settings
+export MINIO_BROWSER_REDIRECT_URL=${MINIO_BROWSER_REDIRECT_URL:-/console}
+export MINIO_SERVER_URL=${MINIO_SERVER_URL:-http://localhost:8080/api}
+
 # Create data directory
 mkdir -p /data
 
