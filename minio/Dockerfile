@@ -26,7 +26,7 @@ ENV MINIO_ROOT_PASSWORD=minioadmin
 ENV MINIO_CONSOLE_ADDRESS=:9001
 ENV MINIO_ADDRESS=:9000
 
-# Expose single port (Railway only allows one)
+# Expose single port for Railway
 EXPOSE 8080
 
 # Health check
