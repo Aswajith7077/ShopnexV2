@@ -1,31 +1,43 @@
 import { decrypt, encrypt } from "@/algorithm/crypto";
 import { API_ENDPOINTS, BASE_URL, getEndPoint } from "@/constants/api.enpoints";
 import { ELOCAL_STORAGE, REQUEST_METHODS } from "@/constants/api.enum";
-import { LoginResponseType } from "@/types/api/auth.type";
+import { LoginResponseType, RefreshResponseType } from "@/types/api/auth.type";
 import {
   useMutation,
   UseMutationResult,
   useQuery,
   UseQueryResult
 } from "@tanstack/react-query";
-import axios, { AxiosError, AxiosRequestConfig } from "axios";
+import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
 import { toast } from "sonner";
 
 const getAuthToken = (): string | null => {
   try {
     const authStorage = localStorage.getItem(ELOCAL_STORAGE.AUTH_STORE) ?? "";
     const { state } = JSON.parse(decrypt(authStorage));
-    return state?.access_token ?? null;
+    // console.log(state)
+    return state?.accessToken ?? null;
   } catch (_error) {
     return null;
   }
 };
+
+// const getRefreshToken = ():string | null => {
+//   try {
+//     const authStorage = localStorage.getItem(ELOCAL_STORAGE.AUTH_STORE) ?? "";
+//     const { state } = JSON.parse(decrypt(authStorage));
+//     return state?.refresh_token ?? null;
+//   } catch (_error) {
+//     return null;
+//   }
+// }
 
 const readCredentials = ():LoginResponseType | null => {
   try {
     const authStorage = localStorage.getItem(ELOCAL_STORAGE.AUTH_STORE) ?? "";
     const { state } = JSON.parse(decrypt(authStorage));
     return state;
+
   } catch (_error) {
     return null;
   }
@@ -60,9 +72,34 @@ axiosInstance.interceptors.request.use((config) => {
 
 axiosInstance.interceptors.response.use(
   (response) => response,
-  (error) => {
+  async (error) => {
     if (error.response?.status === 401) {
-      localStorage.removeItem(ELOCAL_STORAGE.AUTH_STORE);
+
+      const headers: Record<string, string> = {
+        Accept: "application/json",
+        "Content-type": "application/json",
+      };
+
+      const credentials = readCredentials()
+      const config:AxiosRequestConfig = {
+        method: REQUEST_METHODS.GET as string,
+        url: API_ENDPOINTS.REFRESH_ENPOINT,
+        headers: headers,
+        params: {
+          "refreshToken": credentials?.refreshToken
+        }
+      }
+      const response:AxiosResponse<RefreshResponseType> = await axiosInstance.request(config)
+
+      if (response.status !== 200){
+        console.log("Refresh Token Expired! User is being signed out")
+        localStorage.removeItem(ELOCAL_STORAGE.AUTH_STORE);
+      }
+      const new_cred = {
+        ...credentials
+      }
+      new_cred.accessToken = response.data.accessToken
+      writeCredentials(new_cred as LoginResponseType)
     }
     return Promise.reject(error);
   }
@@ -101,7 +138,7 @@ const apiRequest = async <TRequest = unknown, TResponse = unknown>(
 const useApiQuery = <TResponse>(
   endpoint: API_ENDPOINTS,
   params?: Record<string, unknown>,
-  requiresAuth: boolean = false
+  requiresAuth: boolean = true
 ): UseQueryResult<TResponse, AxiosError> => {
   return useQuery({
     queryKey: [endpoint, params],

@@ -2,7 +2,6 @@ import { useAuthContext } from "@/context/auth.context";
 import { Badge } from "../ui/badge";
 
 const role = "dealer";
-
 const Avatar = () => {
   const auth = useAuthContext();
   return (

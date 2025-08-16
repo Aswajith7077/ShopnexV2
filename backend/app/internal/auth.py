@@ -14,8 +14,8 @@ c = CurrentUser()
 
 
 @router.get("/refresh")
-async def refresh_access_token(refresh_token: str):
-    user = await c.get_current_user_by_refresh_token(refresh_token)
+async def refresh_access_token(refreshToken: str):
+    user = await c.get_current_user_by_refresh_token(refreshToken)
     if not user:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND, detail="Invalid Refresh Token"
@@ -23,7 +23,7 @@ async def refresh_access_token(refresh_token: str):
 
     user.update({"lastlogin": datetime.now(timezone.utc).isoformat()})
     access_token = a.generate_access_token(user)
-    return {"access_token": access_token, "refresh_token": refresh_token}
+    return {"accessToken": access_token, "refreshToken": refreshToken}
 
 
 @router.get("/check_access_token")
@@ -44,8 +44,8 @@ async def add_user(form_data: User):
 
 
 @router.get("/check_refresh_token")
-async def check_refresh_token(refresh_token: str):
-    result = await c.get_current_user_by_refresh_token(refresh_token.encode())
+async def check_refresh_token(refreshToken: str):
+    result = await c.get_current_user_by_refresh_token(refreshToken.encode())
     if result is None:
         raise HTTPException(
             status_code=status.HTTP_406_NOT_ACCEPTABLE, detail="Invalid Refresh Token"
@@ -81,6 +81,6 @@ async def login_user(form_data: UserLogin):
         "username": form_data.username,
         "fullname": user_data["fullname"],
         "email": user_data["email"],
-        "access_token": access_token,
-        "refresh_token": refresh_token,
+        "accessToken": access_token,
+        "refreshToken": refresh_token,
     }

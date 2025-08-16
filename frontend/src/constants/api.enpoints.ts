@@ -9,7 +9,9 @@ const enum API_ENDPOINTS {
   SIGNIN_ENDPOINT = `auth/add_user`,
   GET_PRODUCTS_ENDPOINT = `products/list_products`,
   SEARCH_PRODUCTS_ENDPOINT = `products/search`,
-  GET_DETAILS_ENDPOINT = `products/get_details`
+  GET_DETAILS_ENDPOINT = `products/get_details`,
+
+  REFRESH_ENPOINT = `auth/refresh`
 }
 
 

@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import { JSX } from "react";
 import { FaPhone } from "react-icons/fa6";
 import { FaAward } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
+import { useAuthContext } from "@/context/auth.context";
 
 type ProfileDetailType = {
   icon: JSX.Element;
@@ -26,11 +28,20 @@ const details: ProfileDetailType[] = [
     label: "Rank",
     value: "281,201",
   },
+  {
+    icon: <MdEmail size={24}/>,
+    label:"Email",
+    value: ""
+  }
 ];
 
 const description = `Temp Steels is a trusted dealer of premium-quality steel pipes, serving industries such as construction, plumbing, oil & gas, and infrastructure. `;
 
 const Details = () => {
+
+  const auth = useAuthContext();
+  details[3].value = auth.email;
+
   return (
     <div className="flex flex-col gap-5">
       <p className="text-justify text-base">{description}</p>

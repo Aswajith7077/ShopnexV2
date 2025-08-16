@@ -7,6 +7,10 @@ type SigninRequesttype = {
     password:string
 }
 
+type RefreshResponseType = {
+    accessToken:string
+}
+
 type LoginRequestType = {
     username:string,
     password:string
@@ -24,4 +28,5 @@ export type{
     LoginRequestType,
     LoginResponseType,
     SigninRequesttype,
+    RefreshResponseType
 }
