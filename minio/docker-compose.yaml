@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  minio-nginx:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - MINIO_ROOT_USER=admin
+      - MINIO_ROOT_PASSWORD=password123
+    volumes:
+      - minio_data:/data
+    restart: unless-stopped
+
+volumes:
+  minio_data:
