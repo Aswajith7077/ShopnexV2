@@ -86,6 +86,7 @@ class FileBlobService:
         :return: Presigned URL for the file.
         """
         try:
+            print(bucket_name, object_name)
             url = minio_client.presigned_get_object(
                 bucket_name, object_name, expires=timedelta(minutes=expiry)
             )

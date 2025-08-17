@@ -1,6 +1,7 @@
 # Logs
 .env 
 README.md
+.cursor/
 
 logs
 *.log
