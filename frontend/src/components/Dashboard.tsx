@@ -9,10 +9,10 @@ import { useContext } from "react";
 import { AuthContext } from "@/context/auth.context";
 
 const Dashboard = () => {
+  const auth = useContext(AuthContext);
 
-  const auth = useContext(AuthContext)
-
-  return <ScrollArea className="flex-grow overflow-auto">
+  return (
+    <ScrollArea className="flex-grow overflow-auto">
       <div className="flex items-center flex-row gap-4 mx-15 mb-7">
         <div className="flex flex-row gap-4 items-start justify-center">
           <p className="text-3xl">{`Welcome`}</p>
@@ -24,9 +24,9 @@ const Dashboard = () => {
       <AdCards />
       <PopularItems />
       <EndCard />
-      <Footer/>
-    </ScrollArea>;
+      <Footer />
+    </ScrollArea>
+  );
 };
-
 
 export default Dashboard;

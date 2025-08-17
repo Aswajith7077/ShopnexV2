@@ -31,7 +31,6 @@ class ProductService:
                 result[i].pop("REVIEWS")
             return result
         except Exception as e:
-            print(e)
             return e.args
 
     async def retrive_product_details(self, id: str):
@@ -72,7 +71,6 @@ class ProductService:
                 result[i].pop("FEATURES")
                 result[i].pop("REVIEWS")
 
-            print("Result : ", len(names), len(brand), len(sellers))
             return result
 
         except Exception as e:

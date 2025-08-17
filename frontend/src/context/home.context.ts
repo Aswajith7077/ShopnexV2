@@ -1,8 +1,8 @@
 import { createContext, useContext } from "react";
+import { HomeContextType } from "@/types/context.type";
 
 
-
-const HomeContext = createContext<any | undefined>(undefined);
+const HomeContext = createContext<HomeContextType | undefined>(undefined);
 
 const useHomeContext = () => {
 

@@ -37,4 +37,4 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
   return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>;
 };
 
-export { AuthContext, useAuthContext, AuthContextProvider };
+export { AuthContext, useAuthContext, AuthContextProvider }; // eslint-disable-line react-refresh/only-export-components

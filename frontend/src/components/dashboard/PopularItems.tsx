@@ -15,7 +15,7 @@ export const ProductCard = ({ content }: ProductCardPropType) => {
   return (
     <motion.div
       onClick={() => {
-        context_handler.product_name = content.NAME
+        context_handler.setContext({ product_name: content.NAME })
         navigate("/home/products_view");
       }}
       whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}

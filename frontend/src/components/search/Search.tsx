@@ -17,7 +17,7 @@ const Search = () => {
     
   const context = useOutletContext<Record<string,string>>();
   const [isSortByPrice,setIsSortByPrice] = useState<boolean>(false);
-  const [response,setResponse] = useState<Record<string,any>>();
+  const [response,setResponse] = useState<SearchProductResponseType[]>();
   const {mutate} = useApiMutation<SearchProductRequestType,SearchProductResponseType[]>(API_ENDPOINTS.SEARCH_PRODUCTS_ENDPOINT,REQUEST_METHODS.POST);   
 
   
@@ -34,7 +34,7 @@ const Search = () => {
     mutate(request,{
         onSuccess:(response) => setResponse(response)
     })
-  },[])
+  },[context.searchText, mutate])
 return (
   <div className="flex flex-row h-full gap-5 p-5">
     <div className='flex flex-col w-[70%]'>

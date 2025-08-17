@@ -17,7 +17,7 @@ const getAuthToken = (): string | null => {
     const { state } = JSON.parse(decrypt(authStorage));
     // console.log(state)
     return state?.accessToken ?? null;
-  } catch (_error) {
+  } catch {
     return null;
   }
 };
@@ -38,7 +38,7 @@ const readCredentials = ():LoginResponseType | null => {
     const { state } = JSON.parse(decrypt(authStorage));
     return state;
 
-  } catch (_error) {
+  } catch {
     return null;
   }
 };
@@ -48,7 +48,7 @@ const writeCredentials = (credentials: LoginResponseType) => {
     const serialized_data = encrypt(JSON.stringify({ state: credentials }));
     localStorage.setItem(ELOCAL_STORAGE.AUTH_STORE, serialized_data);
     return true;
-  } catch (_error) {
+  } catch {
     toast("Error in Writing text");
     return false;
   }

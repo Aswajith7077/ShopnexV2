@@ -10,6 +10,7 @@ import { Outlet } from "react-router-dom";
 const client = new QueryClient();
 const Home = () => {
   const [searchText, setSearchText] = useState<string>("");
+  const [productName, setProductName] = useState<string | undefined>(undefined);
 
   return (
     <QueryClientProvider client={client}>
@@ -18,6 +19,8 @@ const Home = () => {
           value={{
             searchText: searchText,
             setSearchText: setSearchText,
+            product_name: productName,
+            setContext: ({ product_name }) => setProductName(product_name),
           }}
         >
           <SidebarProvider>

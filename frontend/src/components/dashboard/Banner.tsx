@@ -14,7 +14,6 @@ import {
   ContentAlignmentEnum,
 } from "@/types/products/banner.type";
 import { Button } from "@/components/ui/button";
-import { useCallback } from "react";
 import { Link } from "react-router-dom";
 
 const getTextColor = (color: string) => {
@@ -26,24 +25,13 @@ const getTextAlignment = (alignment: ContentAlignmentEnum) => {
 };
 
 const Banner = () => {
-  const banner_query_callback = useCallback(
-    () =>
-      useApiQuery<BannerResponseType[]>(API_ENDPOINTS.LIST_BANNERS_ENDPOINT),
-    []
-  );
-  const { data } = banner_query_callback();
-
-  console.log(
-    data?.forEach((val) =>
-      console.log(`w-full font-semibold text-${val.text_color}`)
-    )
-  );
+  const { data } = useApiQuery<BannerResponseType[]>(API_ENDPOINTS.LIST_BANNERS_ENDPOINT);
 
   return (
     <Carousel
       plugins={[
         Autoplay({
-          delay: 5000,
+          delay: 10000,
         }),
       ]}
       className="mx-15 w-[125vh]"
@@ -79,7 +67,10 @@ const Banner = () => {
                     >
                       {banner_record.description}
                     </p>
-                    <Link to={banner_record.deal_page} className="w-fit my-5 rounded-full h-fit">
+                    <Link
+                      to={banner_record.deal_page}
+                      className="w-fit my-5 rounded-full h-fit"
+                    >
                       <Button className="rounded-full cursor-pointer py-6  text-md font-semibold px-8 w-fit">
                         Deal now
                       </Button>
