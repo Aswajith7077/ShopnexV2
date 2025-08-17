@@ -89,11 +89,9 @@ class FileBlobService:
             url = minio_client.presigned_get_object(
                 bucket_name, object_name, expires=timedelta(minutes=expiry)
             )
-            print(f"Presigned URL for '{object_name}': {url}")
             return True, url
         except Exception as e:
             print(f"Error generating presigned URL: {e}")
-            print(e)
             return False, e
 
     def download_file_from_minio(self, bucket_name, object_name):
