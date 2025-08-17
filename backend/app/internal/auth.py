@@ -1,28 +1,39 @@
-from datetime import datetime, timezone
+# Standard imports
+# Standard Imports
+from datetime import datetime
+from datetime import timezone
 
-from fastapi import APIRouter, Header, HTTPException, status
+# FastAPI Imports
+# Fastapi imports
+from fastapi import APIRouter
+from fastapi import Header
+from fastapi import HTTPException
+from fastapi import status
 
+# Zevrin Imports
+# Zevrin imports
 from config.config import jwt_refresh_token_expiry_time_minutes
-from models.users import User, UserLogin
-from services.application.auth import Authenticate, CurrentUser
-from services.application.users import insert_user
+from models.users import User
+from models.users import UserLogin
+from services.application import authentication_service
+from services.application import user_service
 
 router = APIRouter(prefix="/auth", tags=["Auth"])
-
-a = Authenticate()
-c = CurrentUser()
 
 
 @router.get("/refresh")
 async def refresh_access_token(refreshToken: str):
-    user = await c.get_current_user_by_refresh_token(refreshToken)
+    # Zevrin Imports
+    from services.application import current_user_service
+
+    user = await current_user_service.get_current_user_by_refresh_token(refreshToken)
     if not user:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND, detail="Invalid Refresh Token"
         )
 
     user.update({"lastlogin": datetime.now(timezone.utc).isoformat()})
-    access_token = a.generate_access_token(user)
+    access_token = authentication_service.generate_access_token(user)
     return {"accessToken": access_token, "refreshToken": refreshToken}
 
 
@@ -33,19 +44,23 @@ async def check_access_token(authorization=Header()):
 
 @router.post("/add_user")
 async def add_user(form_data: User):
-    print(form_data)
 
-    result, e = await insert_user(form_data)
-    print(result)
+    result, e = await user_service.insert_user(form_data)
+
     if result:
         return {"message": "Created new User"}
-    print(e)
+
     raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=e)
 
 
 @router.get("/check_refresh_token")
 async def check_refresh_token(refreshToken: str):
-    result = await c.get_current_user_by_refresh_token(refreshToken.encode())
+    # Zevrin Imports
+    from services.application import current_user_service
+
+    result = await current_user_service.get_current_user_by_refresh_token(
+        refreshToken.encode()
+    )
     if result is None:
         raise HTTPException(
             status_code=status.HTTP_406_NOT_ACCEPTABLE, detail="Invalid Refresh Token"
@@ -64,8 +79,9 @@ async def check_refresh_token(refreshToken: str):
 @router.post("/login")
 async def login_user(form_data: UserLogin):
 
-    global a
-    result = await a.authenticate_user(form_data.username, form_data.password)
+    result = await authentication_service.authenticate_user(
+        form_data.username, form_data.password
+    )
     if result is None:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
@@ -75,8 +91,8 @@ async def login_user(form_data: UserLogin):
     current_time = datetime.now(timezone.utc)
     user_data = {**result, "lastlogin": current_time.isoformat()}
     user_data.pop("_id")
-    access_token = a.generate_access_token(user_data)
-    refresh_token = a.generate_refresh_token(user_data)
+    access_token = authentication_service.generate_access_token(user_data)
+    refresh_token = authentication_service.generate_refresh_token(user_data)
     return {
         "username": form_data.username,
         "fullname": user_data["fullname"],

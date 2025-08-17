@@ -1,15 +1,16 @@
+# Standard Imports
 from urllib.parse import urlparse
 
+# Third Party Imports
 from minio import Minio
 from minio.error import S3Error
 
-from config.config import (
-    debug,
-    minio_access_key,
-    minio_port,
-    minio_secret_key,
-    minio_server,
-)
+# Zevrin Imports
+from config.config import debug
+from config.config import minio_access_key
+from config.config import minio_port
+from config.config import minio_secret_key
+from config.config import minio_server
 
 try:
     # Initialize MinIO client

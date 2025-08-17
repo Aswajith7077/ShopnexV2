@@ -1,5 +1,8 @@
-from pymongo import ASCENDING, MongoClient
+# Third Party Imports
+from pymongo import ASCENDING
+from pymongo import MongoClient
 
+# Zevrin Imports
 from config.database import client
 
 

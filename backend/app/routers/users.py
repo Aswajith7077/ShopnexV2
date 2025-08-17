@@ -1,8 +1,14 @@
-from fastapi import APIRouter, Depends, HTTPException, Response, status
+# FastAPI Imports
+from fastapi import APIRouter
+from fastapi import Depends
+from fastapi import HTTPException
+from fastapi import Response
+from fastapi import status
 
+# Zevrin Imports
 from app.dependencies import check_access_token
 from models.users import User
-from services.application.users import find_single_user, update_user
+from services.application import user_service
 
 router = APIRouter(
     prefix="/users",
@@ -14,7 +20,7 @@ router = APIRouter(
 @router.get("/get_user/{id}")
 async def get_single_user(id: str):
 
-    result, e = await find_single_user(id)
+    result, e = await user_service.find_single_user(id)
     if e is not None:
         raise HTTPException(status.HTTP_404_NOT_FOUND, detail={"message": e})
 
@@ -25,7 +31,7 @@ async def get_single_user(id: str):
 @router.put("/update_user/")
 async def update_single_user(username: str, user: User):
 
-    result, exception = await update_user(username, user)
+    result, exception = await user_service.update_user(username, user)
     if result:
         return Response(status_code=status.HTTP_202_ACCEPTED, content="User Updated")
     raise HTTPException(

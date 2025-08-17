@@ -1,13 +1,14 @@
+# Third Party Imports
 from pymongo import MongoClient
 
-from config.config import (
-    collection_cart,
-    collection_product,
-    collection_promotion,
-    collection_user,
-    db_name,
-    db_url,
-)
+# Zevrin Imports
+from config.config import collection_banner
+from config.config import collection_cart
+from config.config import collection_product
+from config.config import collection_promotion
+from config.config import collection_user
+from config.config import db_name
+from config.config import db_url
 
 client = None
 db = None
@@ -27,9 +28,10 @@ try:
     product_collection = db[collection_product]
     cart_collection = db[collection_cart]
     promotion_collection = db[collection_promotion]
+    banner_collection = db[collection_banner]
 
     print("Connection Successfull")
-    # print(list(product_collection.find().limit(10)))
+
 except Exception as e:
 
     print("Mongo DB Error : ", e)

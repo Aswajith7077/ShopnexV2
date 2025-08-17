@@ -5,12 +5,18 @@ const BASE_URL = CONFIG.BASE_URL;
 
 
 const enum API_ENDPOINTS {
+  // User Endpoints
   LOGIN_ENDPOINT = `auth/login`,
   SIGNIN_ENDPOINT = `auth/add_user`,
+
+  // Banners
+  LIST_BANNERS_ENDPOINT = `products/list_banners`,
+
   GET_PRODUCTS_ENDPOINT = `products/list_products`,
   SEARCH_PRODUCTS_ENDPOINT = `products/search`,
   GET_DETAILS_ENDPOINT = `products/get_details`,
 
+  // Auth Endpoints
   REFRESH_ENPOINT = `auth/refresh`
 }
 

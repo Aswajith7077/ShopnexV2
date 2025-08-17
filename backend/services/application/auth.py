@@ -1,17 +1,17 @@
+# Third Party Imports
 import jwt
 from passlib.context import CryptContext
 
-from config.config import (
-    jwt_access_token_secret_key,
-    jwt_encode_algorithm,
-    jwt_refresh_token_secret_key,
-)
+# Zevrin Imports
+from config.config import jwt_access_token_secret_key
+from config.config import jwt_encode_algorithm
+from config.config import jwt_refresh_token_secret_key
 from config.database import user_collection
 
 pwd_context = CryptContext(schemes=["bcrypt"])
 
 
-class CurrentUser:
+class CurrentUserService:
 
     async def get_current_user_by_access_token(self, token: bytes):
         result = jwt.decode(
@@ -26,7 +26,7 @@ class CurrentUser:
         return result
 
 
-class Authenticate:
+class AuthenticationService:
 
     def generate_access_token(self, data: dict):
         return jwt.encode(

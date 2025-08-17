@@ -1,4 +1,6 @@
-from pydantic import BaseModel, Field
+# Third Party Imports
+from pydantic import BaseModel
+from pydantic import Field
 
 
 class User(BaseModel):

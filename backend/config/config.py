@@ -1,5 +1,7 @@
+# Standard Imports
 import os
 
+# Third Party Imports
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -28,6 +30,7 @@ collection_product = os.getenv("COLLECTION_PRODUCTS")
 collection_user = os.getenv("COLLECTION_USER")
 collection_cart = os.getenv("COLLECTION_CART")
 collection_promotion = os.getenv("COLLECTION_PROMOTION")
+collection_banner = os.getenv("COLLECTION_BANNERS")
 
 minio_server = (
     os.getenv("MINIO_PROD_SERVER") if not debug else os.getenv("MINIO_SERVER")

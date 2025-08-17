@@ -1,7 +1,11 @@
+# Standard Imports
+from datetime import timedelta
+
+# Zevrin Imports
 from config.file_blob import minio_client
 
 
-class BucketService:
+class FileBlobService:
     def __init__(self, minio_client):
         self.minio_client = minio_client
 
@@ -83,15 +87,16 @@ class BucketService:
         """
         try:
             url = minio_client.presigned_get_object(
-                bucket_name, object_name, expires=expiry
+                bucket_name, object_name, expires=timedelta(minutes=expiry)
             )
             print(f"Presigned URL for '{object_name}': {url}")
-            return url
+            return True, url
         except Exception as e:
             print(f"Error generating presigned URL: {e}")
-            return None
+            print(e)
+            return False, e
 
-    def download_file_from_minio(self, bucket_name, object_name, file_path):
+    def download_file_from_minio(self, bucket_name, object_name):
         """
         Download a file from a MinIO bucket.
 
@@ -101,11 +106,11 @@ class BucketService:
         :return: True if file was downloaded, else False.
         """
         try:
-            minio_client.fget_object(bucket_name, object_name, file_path)
-            print(
-                f"File '{object_name}' downloaded from bucket '{bucket_name}' to '{file_path}'."
-            )
-            return True
+            response = minio_client.get_object(bucket_name, object_name)
+            binary_content = response.read()
+            response.close()
+            response.release_conn()
+            return True, binary_content
         except Exception as e:
             print(f"Error downloading file: {e}")
-            return False
+            return False, e

@@ -1,9 +1,13 @@
+# FastAPI Imports
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+# Zevrin Imports
 from app.internal import auth
-from app.routers import products, users
-from config.config import front_end_dev_url, front_end_prod_url
+from app.routers import products
+from app.routers import users
+from config.config import front_end_dev_url
+from config.config import front_end_prod_url
 
 app = FastAPI(root_path="/api")
 
