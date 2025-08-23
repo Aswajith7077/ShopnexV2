@@ -94,7 +94,7 @@ const NavLinks = () => {
             About Us
           </NavigationMenuLink>
         </Link>
-        <Link to="/docs">
+        <Link to="/documentation">
           <NavigationMenuLink
             className={`${navigationMenuTriggerStyle()} font-open-sans font-semibold text-md py-7`}
           >

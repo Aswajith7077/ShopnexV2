@@ -48,32 +48,32 @@ const contents:ContentType[] = [
     subcontents: [
       {
         title: "Free",
-        url: "/pricing/individuals/free",
+        url: "/subscriptions",
         icon: <FaBookmark size={24} className="w-[11%]"/>,
         description: "Free plan for individuals with basic features.",
       },
       {
         title: "Basic",
-        url: "/pricing/businesses/basic",
+        url: "/subscriptions",
         icon:<FaStar size={28} className="w-[10%]"/>,
         description: "Basic plan for small businesses.",
       },
       {
         title: "Pro",
-        url: "/pricing/individuals/pro",
+        url: "/subscriptions",
         icon: <TiFlash size={36}/>,
         description: "Pro plan for individuals with additional features.",
       },
       {
         title: "Platinum",
-        url: "/pricing/businesses/platinum",
+        url: "/subscriptions",
         icon: <FaCrown size={48}/>,
         description:
           "Premium plan for large businesses with advanced features.",
       },
       {
         title: "Premium",
-        url: "/pricing/individuals/premium",
+        url: "/subscriptions",
         icon: <GiCutDiamond size={36}/>,
         description: "Premium plan for individuals with full features.",
       },

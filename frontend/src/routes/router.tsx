@@ -4,9 +4,11 @@ import NexStore from "@/components/NexStore";
 import PaymentHistory from "@/components/PaymentHistory";
 import Search from "@/components/search/Search";
 import Shipping from "@/components/Shipping";
+import DocumentationPage from "@/pages/Documentation";
 import Home from "@/pages/Home";
 import Landing from "@/pages/Landing";
 import Login from "@/pages/Login";
+import SubscriptionPage from "@/pages/Pricing";
 import ProductsView from "@/pages/ProductsView";
 import Profile from "@/pages/Profile";
 import SignIn from "@/pages/SignIn";
@@ -24,6 +26,14 @@ const router = createBrowserRouter([
   {
     path: "/signin",
     element: <SignIn />
+  },
+  {
+    path: "/documentation",
+    element: <DocumentationPage />
+  },
+  {
+    path: "/subscriptions",
+    element: <SubscriptionPage />
   },
   {
     path: "/home",
