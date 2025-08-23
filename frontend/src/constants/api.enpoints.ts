@@ -12,6 +12,9 @@ const enum API_ENDPOINTS {
   // Banners
   LIST_BANNERS_ENDPOINT = `products/list_banners`,
 
+  // Categories
+  LIST_CATEGORIES_ENDPOINT = `categories/list_categories`,
+
   GET_PRODUCTS_ENDPOINT = `products/list_products`,
   SEARCH_PRODUCTS_ENDPOINT = `products/search`,
   GET_DETAILS_ENDPOINT = `products/get_details`,

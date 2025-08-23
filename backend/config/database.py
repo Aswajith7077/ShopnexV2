@@ -4,6 +4,7 @@ from pymongo import MongoClient
 # Zevrin Imports
 from config.config import collection_banner
 from config.config import collection_cart
+from config.config import collection_categories
 from config.config import collection_product
 from config.config import collection_promotion
 from config.config import collection_user
@@ -17,6 +18,8 @@ user_collection = None
 product_collection = None
 cart_collection = None
 promotion_collection = None
+banner_collection = None
+categories_collection = None
 
 
 try:
@@ -29,6 +32,7 @@ try:
     cart_collection = db[collection_cart]
     promotion_collection = db[collection_promotion]
     banner_collection = db[collection_banner]
+    categories_collection = db[collection_categories]
 
     print("Connection Successfull")
 

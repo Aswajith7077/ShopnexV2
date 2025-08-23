@@ -31,6 +31,7 @@ collection_user = os.getenv("COLLECTION_USER")
 collection_cart = os.getenv("COLLECTION_CART")
 collection_promotion = os.getenv("COLLECTION_PROMOTION")
 collection_banner = os.getenv("COLLECTION_BANNERS")
+collection_categories = os.getenv("COLLECTION_CATEGORIES")
 
 minio_server = (
     os.getenv("MINIO_PROD_SERVER") if not debug else os.getenv("MINIO_SERVER")

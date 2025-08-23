@@ -1,62 +1,79 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { featured_categories } from "@/data/api/dashboard.data";
-import { Card, CardHeader } from "@/components/ui/card";
-import { CategoryButtonsPropType } from "@/types/api/dashboard.type";
+import { Card } from "@/components/ui/card";
+import {
+  CategoryButtonsPropType,
+  FeaturedCategoryType,
+  CategoryType,
+} from "@/types/api/dashboard.type";
+import { useApiQuery } from "@/hooks/useApiService";
+import { API_ENDPOINTS } from "@/constants/api.enpoints";
+import { Link } from "react-router-dom";
 
-const CategoryButtons = ({ state, setState }: CategoryButtonsPropType) => {
+const CategoryButtons = ({
+  state,
+  setState,
+  data,
+}: CategoryButtonsPropType) => {
   return (
     <div className="flex flex-row w-fit items-center gap-5">
-      {featured_categories.map((value, key) => {
-        return (
-          <Button
-            variant={key === state ? "secondary" : "ghost"}
-            key={key}
-            onClick={() => setState(key)}
-            className="cursor-pointer"
-          >
-            {value.title}
-          </Button>
-        );
-      })}
+      {data &&
+        data.map((value, key) => {
+          return (
+            <Button
+              variant={key === state ? "secondary" : "ghost"}
+              key={key}
+              onClick={() => setState(key)}
+              className="cursor-pointer"
+            >
+              {value.title}
+            </Button>
+          );
+        })}
     </div>
   );
 };
 
-const SubCategoryCard = ({
-  value,
-  width
-}: {
-  value: string;
-  width: number;
-}) => {
+const SubCategoryCard = ({ title, image, redirect_url }: CategoryType) => {
   return (
-    <Card className={`border w-1/${width}`}>
-      <CardHeader className="flex items-center h-60">
-        {value}
-      </CardHeader>
-    </Card>
+    <Link to={redirect_url} className="w-full">
+      <Card
+        className="relative h-90 w-full round-lg overflow-hidden drop-shadow-[0_0_1px_rgba(0,0,0,0.8)] bg-cover bg-center flex flex-col justify-end p-4"
+        style={{ backgroundImage: `url(${image.image_url})` }}
+      >
+        <h1 className="text-white text-xl font-semibold drop-shadow">
+          {title}
+        </h1>
+      </Card>
+    </Link>
   );
 };
 
 const FeaturedCategories = () => {
   const [current, setCurrent] = useState<number>(0);
+
+  const { data } = useApiQuery<FeaturedCategoryType[]>(
+    API_ENDPOINTS.LIST_CATEGORIES_ENDPOINT
+  );
+
   return (
     <div className="flex flex-col my-10 justify-center mx-15">
       <div className="flex flex-row justify-between mx-5">
         <h1 className="font-semibold text-4xl ">Featured Categories</h1>
-        <CategoryButtons state={current} setState={setCurrent} />
+        <CategoryButtons state={current} setState={setCurrent} data={data} />
       </div>
-      <section className="flex flex-row  mt-10 gap-5">
-        {featured_categories[current].sub_categories.map((value, key) => {
-          return (
-            <SubCategoryCard
-              key={key}
-              value={value}
-              width={featured_categories[current].sub_categories.length}
-            />
-          );
-        })}
+      <section className="flex flex-row mt-10 gap-5">
+        {data &&
+          data[current].sub_categories.map((category, key) => {
+            return (
+              <SubCategoryCard
+                key={key}
+                image={category.image}
+                redirect_url={category.redirect_url}
+                title={category.title}
+              />
+            );
+          })}
       </section>
     </div>
   );

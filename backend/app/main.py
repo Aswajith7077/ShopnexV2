@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 # Zevrin Imports
 from app.internal import auth
+from app.routers import categories
 from app.routers import products
 from app.routers import users
 from config.config import front_end_dev_url
@@ -24,6 +25,7 @@ app.add_middleware(
 app.include_router(products.router)
 app.include_router(auth.router)
 app.include_router(users.router)
+app.include_router(categories.router)
 
 
 @app.get("/")
