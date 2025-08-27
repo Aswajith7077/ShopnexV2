@@ -726,7 +726,7 @@ const DocumentationPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white font-['Open_Sans']">
+    <div className="min-h-screen w-screen bg-slate-950 text-white font-['Open_Sans']">
       <Header onToggleSidebar={() => setSidebarOpen(!sidebarOpen)} />
 
       <div className="flex">

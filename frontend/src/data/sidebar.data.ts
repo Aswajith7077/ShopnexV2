@@ -19,39 +19,31 @@ const sidebar_data: SidebarDataType = {
     title: "Category",
     items: [
       {
-        title: "Electronics",
+        title: "Productivity",
         url: ""
       },
       {
-        title: "Watches",
+        title: "Women",
         url: ""
       },
       {
-        title: "Clothing",
+        title: "Luxury",
         url: ""
       },
       {
-        title: "Garage",
-        url: ""
-      },
-      {
-        title: "Sports",
-        url: ""
-      },
-      {
-        title: "Entertainment",
+        title: "Men",
         url: ""
       }
     ]
   },
   sidebar_utilities: [
     {
-      title: "Cart",
+      title: "Connections",
       url: "cart",
       icon: HiShoppingCart
     },
     {
-      title: "Shipping",
+      title: "On Progress",
       url: "shipping",
       icon: RiShip2Fill
     },
@@ -61,7 +53,7 @@ const sidebar_data: SidebarDataType = {
       icon: MdPayments
     },
     {
-      title: "Nex Store",
+      title: "Zevrium",
       url: "nex_store",
       icon: SiSinglestore
     }
