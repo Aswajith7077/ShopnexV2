@@ -5,7 +5,6 @@ on:
     branches: [main, develop]
   pull_request:
   workflow_dispatch:
-
 jobs:
   backend_ci:
     name: Zevrin Backend - build, lint & tests
@@ -24,22 +23,6 @@ jobs:
           --health-interval=10s
           --health-timeout=5s
           --health-retries=5
-      minio:
-        image: quay.io/minio/minio:latest
-        ports:
-          - 9000:9000
-          - 9001:9001
-        env:
-          MINIO_ROOT_USER: minioadmin
-          MINIO_ROOT_PASSWORD: minioadmin
-        options: >-
-          --health-cmd="curl -f http://localhost:9000/minio/health/live || exit 1"
-          --health-interval=10s
-          --health-timeout=5s
-          --health-retries=5
-          --entrypoint /usr/bin/minio
-        volumes:
-          - /tmp/data:/data
 
     steps:
       - name: Checkout repository
@@ -52,41 +35,29 @@ jobs:
 
       - name: Install dependencies
         run: |
-          # Upgrade pip and setuptools
           python -m pip install --upgrade pip setuptools wheel
-
-          # Verify requirements.txt exists
           if [ ! -f requirements.txt ]; then
             echo "Error: requirements.txt not found in $(pwd)"
             exit 1
           fi
+          python -m pip install -r requirements.txt -v
 
-          # Install requirements with verbose output and error handling
-          python -m pip install -r requirements.txt -v || {
-            echo "Failed to install dependencies"
-            echo "Content of requirements.txt:"
-            cat requirements.txt
-            exit 1
-          }
       - name: Setup environment
         env:
           JWT_ACCESS_KEY: ba793b37fe78e957b98cfbbc8236675a5cef06c00f6edccfd48ffae86405fe6f
           JWT_REFRESH_KEY: c45461329c6f206008f6bea781bc5ac9e75e7a165f1a8724fd13e315d1f84d35
         run: |
           cat << EOF > .env
-          # Database Configuration
           DB_USER=admin
           DB_PASSWORD=password
           DB_HOST=mongo
           DB_NAME=zevrin_test
           MONGODB_URL=mongodb://mongo:27017
 
-          # Application Settings
           DEBUG=1
           FRONT_END_PROD_URL=http://localhost:3000
           FRONT_END_DEV_URL=http://localhost:3000
 
-          # Collections
           COLLECTION_PRODUCTS=products
           COLLECTION_USER=users
           COLLECTION_CART=cart
@@ -94,30 +65,31 @@ jobs:
           COLLECTION_BANNERS=banners
           COLLECTION_CATEGORIES=categories
 
-          # JWT Configuration
           JWT_ENCODE_ALGORITHM=HS256
           JWT_ACCESS_TOKEN_SECRET_KEY=${JWT_ACCESS_KEY}
           JWT_REFRESH_TOKEN_SECRET_KEY=${JWT_REFRESH_KEY}
           JWT_ACCESS_TOKEN_EXPIRE_TIME_MINUTES=30
           JWT_REFRESH_TOKEN_EXPIRE_TIME_MINUTES=10080
 
-          # MinIO Configuration
           MINIO_PORT=9000
-          MINIO_SERVER=minio
+          MINIO_SERVER=http://localhost:9000
           MINIO_ROOT_USER=minioadmin
           MINIO_ROOT_PASSWORD=minioadmin
-          MINIO_PROD_SERVER=minio:9000
+          MINIO_PROD_SERVER=http://localhost:9000
           EOF
 
       - name: Build backend Docker image
         run: docker build -t my-app-backend:${{ github.sha }} .
 
-      - name: Configure MinIO
+      - name: Start MinIO manually
         run: |
-          docker exec $(docker ps -q -f name=minio) minio server /data --console-address ":9001" &
-          echo "Waiting for MinIO to start..."
-          sleep 5
-      
+          docker run -d --name minio \
+            -p 9000:9000 -p 9001:9001 \
+            -e MINIO_ROOT_USER=minioadmin \
+            -e MINIO_ROOT_PASSWORD=minioadmin \
+            quay.io/minio/minio:latest \
+            server /data --console-address :9001
+
       - name: Verify MinIO is running
         run: |
           echo "Checking MinIO health..."
@@ -134,7 +106,6 @@ jobs:
 
       - name: Verify backend container starts
         run: |
-          # Start container with env file
           docker run -d --name backend-test \
             -p 8000:8000 \
             --env-file .env \
@@ -142,25 +113,18 @@ jobs:
 
           echo "Waiting for API to become ready..."
           for i in {1..30}; do
-            echo "Attempt $i/30..."
-            
-            # Check container is still running
             if ! docker ps | grep -q backend-test; then
               echo "Container stopped unexpectedly. Logs:"
               docker logs backend-test
               exit 1
             fi
-            
-            # Try to connect to API and check MinIO health
+
             if curl -sSf http://localhost:8000/docs > /dev/null 2>&1; then
               if curl -sSf http://localhost:8000/api/v1/health/minio > /dev/null 2>&1; then
-                echo "API and MinIO connection verified!"
+                echo "✅ API and MinIO connection verified!"
                 exit 0
-              else
-                echo "API is up but MinIO connection failed"
               fi
             fi
-            
             sleep 2
           done
 
