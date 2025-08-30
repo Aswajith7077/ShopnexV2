@@ -24,6 +24,21 @@ jobs:
           --health-interval=10s
           --health-timeout=5s
           --health-retries=5
+      minio:
+        image: quay.io/minio/minio:latest
+        ports:
+          - 9000:9000
+          - 9001:9001
+        env:
+          MINIO_ROOT_USER: minioadmin
+          MINIO_ROOT_PASSWORD: minioadmin
+        options: >-
+          --health-cmd="curl -f http://localhost:9000/minio/health/live || exit 1"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+          --entrypoint ""
+        
 
     steps:
       - name: Checkout repository
@@ -95,6 +110,21 @@ jobs:
 
       - name: Build backend Docker image
         run: docker build -t my-app-backend:${{ github.sha }} .
+
+      - name: Verify MinIO is running
+        run: |
+          echo "Checking MinIO health..."
+          for i in {1..10}; do
+            if curl -sSf http://localhost:9000/minio/health/live > /dev/null; then
+              echo "✅ MinIO is live!"
+              exit 0
+            fi
+            echo "Waiting for MinIO... attempt $i"
+            sleep 3
+          done
+          echo "❌ MinIO did not start in time"
+          exit 1
+
 
       - name: Verify backend container starts
         run: |
