@@ -28,20 +28,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip setuptools wheel
-          if [ ! -f requirements.txt ]; then
-            echo "Error: requirements.txt not found in $(pwd)"
-            exit 1
-          fi
-          python -m pip install -r requirements.txt -v
-
       - name: Setup environment
         env:
           JWT_ACCESS_KEY: ba793b37fe78e957b98cfbbc8236675a5cef06c00f6edccfd48ffae86405fe6f
@@ -52,7 +38,7 @@ jobs:
           DB_PASSWORD=password
           DB_HOST=mongo
           DB_NAME=zevrin_test
-          MONGODB_URL=mongodb://mongo:27017
+          MONGODB_URL=mongodb://mongo:27017/zevrin_test
 
           DEBUG=1
           FRONT_END_PROD_URL=http://localhost:3000
@@ -72,10 +58,11 @@ jobs:
           JWT_REFRESH_TOKEN_EXPIRE_TIME_MINUTES=10080
 
           MINIO_PORT=9000
-          MINIO_SERVER=http://localhost:9000
           MINIO_ROOT_USER=minioadmin
           MINIO_ROOT_PASSWORD=minioadmin
-          MINIO_PROD_SERVER=http://localhost:9000
+          MINIO_SERVER=http://minio:9000
+          MINIO_PROD_SERVER=http://minio:9000
+
           EOF
 
       - name: Build backend Docker image
