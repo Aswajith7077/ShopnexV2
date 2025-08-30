@@ -19,7 +19,7 @@ jobs:
         run: npm install -g vercel
     
       - name: Build Project
-        run: npm install && npm run build
+        run: npm ci && npm run build
 
       - name: Authenticate Vercel
         run: vercel login --token=${{ secrets.ZEVRIN_VERCEL_TOKEN }}
