@@ -1,4 +1,4 @@
-name: Zevrin Frontend CI
+name: Zevrin Frontend Styles
 
 on:
   push:
