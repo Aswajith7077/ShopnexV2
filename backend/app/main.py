@@ -30,4 +30,4 @@ app.include_router(categories.router)
 
 @app.get("/")
 async def root():
-    return {"message": "ShopNex Welcomes You"}
+    return {"message": "Zevrin Welcomes You"}

@@ -10,7 +10,7 @@ from services.application import category_service
 
 router = APIRouter(
     prefix="/categories",
-    # dependencies=[Depends(check_access_token)],
+    dependencies=[Depends(check_access_token)],
     tags=["Categories"],
 )
 

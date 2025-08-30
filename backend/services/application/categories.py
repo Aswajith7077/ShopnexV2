@@ -51,7 +51,3 @@ class CategoryService:
             category_dtos.append(category_dto)
 
         return True, category_dtos
-
-    # except Exception as e:
-    #     print(e)
-    #     return False, e.args
