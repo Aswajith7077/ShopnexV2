@@ -21,9 +21,6 @@ jobs:
       - name: Build Project
         run: npm install --force && npm run build
 
-      - name: Authenticate Vercel
-        run: vercel login --token=${{ secrets.ZEVRIN_VERCEL_TOKEN }}
-
       - name: Deploy to Vercel
         run: vercel --prod --token=${{ secrets.ZEVRIN_VERCEL_TOKEN }}
         env:
