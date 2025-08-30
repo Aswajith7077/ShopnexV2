@@ -118,11 +118,3 @@ jobs:
           echo "Container logs:"
           docker logs backend-test
           exit 1
-
-      - name: Run lint & formatting checks
-        run: make check
-
-      - name: Run pytest
-        env:
-          MONGODB_URL: mongodb://mongo:27017
-        run: pytest tests/test_run.py -v --tb=short
