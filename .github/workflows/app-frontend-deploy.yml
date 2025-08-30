@@ -1,0 +1,28 @@
+name: Zevrin Frontend App Deployment
+
+on:
+  push:
+    branches:
+      - main   # or whatever your production branch is
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Install Vercel CLI
+        run: npm install -g vercel
+    
+      - name: Build Project
+        run: npm install && npm run build
+
+      - name: Authenticate Vercel
+        run: vercel login --token=${{ secrets.ZEVRIN_VERCEL_TOKEN }}
+
+      - name: Deploy to Vercel
+        run: vercel --prod --token=${{ secrets.ZEVRIN_VERCEL_TOKEN }}
+        env:
+          VERCEL_ORG_ID: ${{ secrets.ZEVRIN_APP_ORG }}
+          VERCEL_PROJECT_ID: ${{ secrets.ZEVRIN_APP_PROJ }}
