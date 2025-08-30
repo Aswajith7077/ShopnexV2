@@ -1,14 +1,14 @@
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+import { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
 import {
   CategoryButtonsPropType,
   FeaturedCategoryType,
   CategoryType,
-} from "@/types/api/dashboard.type";
-import { useApiQuery } from "@/hooks/useApiService";
-import { API_ENDPOINTS } from "@/constants/api.enpoints";
-import { Link } from "react-router-dom";
+} from '@/types/api/dashboard.type';
+import { useApiQuery } from '@/hooks/useApiService';
+import { API_ENDPOINTS } from '@/constants/api.enpoints';
+import { Link } from 'react-router-dom';
 
 const CategoryButtons = ({
   state,
@@ -21,7 +21,7 @@ const CategoryButtons = ({
         data.map((value, key) => {
           return (
             <Button
-              variant={key === state ? "secondary" : "ghost"}
+              variant={key === state ? 'secondary' : 'ghost'}
               key={key}
               onClick={() => setState(key)}
               className="cursor-pointer"

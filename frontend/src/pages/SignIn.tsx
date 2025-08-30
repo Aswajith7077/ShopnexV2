@@ -1,24 +1,24 @@
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Toaster } from "@/components/ui/sonner";
-import { API_ENDPOINTS } from "@/constants/api.enpoints";
-import { REQUEST_METHODS } from "@/constants/api.enum";
-import { AppName, LogoIcon } from "@/constants/app.details";
-import { SigninFormSchema } from "@/data/api/auth.data";
-import { useApiMutation } from "@/hooks/useApiService";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-import { toast } from "sonner";
-import { z } from "zod";
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Toaster } from '@/components/ui/sonner';
+import { API_ENDPOINTS } from '@/constants/api.enpoints';
+import { REQUEST_METHODS } from '@/constants/api.enum';
+import { AppName, LogoIcon } from '@/constants/app.details';
+import { SigninFormSchema } from '@/data/api/auth.data';
+import { useApiMutation } from '@/hooks/useApiService';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'sonner';
+import { z } from 'zod';
 
 const FormComponent = () => {
   const navigate = useNavigate();
@@ -40,11 +40,11 @@ const FormComponent = () => {
 
     mutate(request, {
       onSuccess: () => {
-        toast("Sign In Successful");
-        navigate("/login");
+        toast('Sign In Successful');
+        navigate('/login');
       },
       onError: (error) => {
-        toast("Sign In Failed", {
+        toast('Sign In Failed', {
           description: error.message,
         });
       },
@@ -59,9 +59,9 @@ const FormComponent = () => {
       >
         <div className="flex flex-row w-full px-20 lg:px-[22%] justify-end">
           <Button
-            variant={"ghost"}
+            variant={'ghost'}
             className="cursor-pointer"
-            onClick={() => navigate("/login")}
+            onClick={() => navigate('/login')}
           >
             Login
           </Button>
@@ -72,7 +72,7 @@ const FormComponent = () => {
             Enter your credentials
           </p>
           <FormField
-            name={"email"}
+            name={'email'}
             control={form.control}
             render={({ field }) => (
               <FormItem>
@@ -90,7 +90,7 @@ const FormComponent = () => {
           />
 
           <FormField
-            name={"fullname"}
+            name={'fullname'}
             control={form.control}
             render={({ field }) => (
               <FormItem>
@@ -107,7 +107,7 @@ const FormComponent = () => {
             )}
           />
           <FormField
-            name={"username"}
+            name={'username'}
             control={form.control}
             render={({ field }) => (
               <FormItem>
@@ -125,7 +125,7 @@ const FormComponent = () => {
           />
 
           <FormField
-            name={"new_password"}
+            name={'new_password'}
             control={form.control}
             render={({ field }) => (
               <FormItem>
@@ -143,7 +143,7 @@ const FormComponent = () => {
           />
 
           <FormField
-            name={"confirm_password"}
+            name={'confirm_password'}
             control={form.control}
             render={({ field }) => (
               <FormItem>
@@ -161,11 +161,11 @@ const FormComponent = () => {
           />
 
           <Button
-            variant={"default"}
+            variant={'default'}
             disabled={isLoading}
             className="rounded-lg text-base mt-3 cursor-pointer py-6 w-full"
           >
-            {isLoading ? "Signing In..." : "Sign in"}
+            {isLoading ? 'Signing In...' : 'Sign in'}
           </Button>
           <div className="flex flex-row items-center px-2 w-full">
             <div className="hidden md:inline border-gray-400 w-1/3 border h-0" />
@@ -175,7 +175,7 @@ const FormComponent = () => {
             <div className="hidden md:inline w-1/3 border-gray-400 border h-0" />
           </div>
           <Button
-            variant={"outline"}
+            variant={'outline'}
             className="w-full border-gray-900 py-6 rounded-full cursor-pointer"
           >
             Continue with Google
@@ -184,13 +184,13 @@ const FormComponent = () => {
 
         <div className="flex flex-row w-full justify-center ">
           <Button
-            variant={"link"}
+            variant={'link'}
             className="text-sm text-gray-400 cursor-pointer"
           >
             Privacy
           </Button>
           <Button
-            variant={"link"}
+            variant={'link'}
             className="text-sm text-gray-400 cursor-pointer"
           >
             Terms and Conditions
@@ -202,7 +202,7 @@ const FormComponent = () => {
 };
 
 const SignIn = () => {
-  document.body.classList.add("dark");
+  document.body.classList.add('dark');
   return (
     <main className="flex flex-row w-screen h-screen bg-gradient-to-tr from-slate-900 to-slate-950">
       <FormComponent />

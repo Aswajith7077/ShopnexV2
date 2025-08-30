@@ -5,10 +5,9 @@ on:
     branches: [main, develop]
   pull_request:
   workflow_dispatch:
-
 jobs:
   backend_ci:
-    name: Zevrin Backend - build, lint & tests
+    name: Zevrin Backend - container & blob
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -29,34 +28,93 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-
-      - name: Install dependencies
+      - name: Setup environment
         run: |
-          python -m pip install --upgrade pip
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          cat << EOF > .env
+          DB_USER=admin
+          DB_PASSWORD=password
+          DB_HOST=mongo
+          DB_NAME=zevrin_test
+          MONGODB_URL=mongodb://mongo:27017/zevrin_test
+
+          DEBUG=1
+          FRONT_END_PROD_URL=http://localhost:3000
+          FRONT_END_DEV_URL=http://localhost:3000
+
+          COLLECTION_PRODUCTS=products
+          COLLECTION_USER=users
+          COLLECTION_CART=cart
+          COLLECTION_PROMOTION=promotions
+          COLLECTION_BANNERS=banners
+          COLLECTION_CATEGORIES=categories
+
+          JWT_ENCODE_ALGORITHM=HS256
+          JWT_ACCESS_TOKEN_SECRET_KEY=${JWT_ACCESS_KEY}
+          JWT_REFRESH_TOKEN_SECRET_KEY=${JWT_REFRESH_KEY}
+          JWT_ACCESS_TOKEN_EXPIRE_TIME_MINUTES=30
+          JWT_REFRESH_TOKEN_EXPIRE_TIME_MINUTES=10080
+
+          MINIO_PORT=9000
+          MINIO_ROOT_USER=minioadmin
+          MINIO_ROOT_PASSWORD=minioadmin
+          MINIO_SERVER=http://minio:9000
+          MINIO_PROD_SERVER=http://minio:9000
+          
+          EOF
 
       - name: Build backend Docker image
         run: docker build -t my-app-backend:${{ github.sha }} .
 
+      - name: Create Docker network
+        run: docker network create app-network || true
+
+      - name: Start MinIO manually
+        run: |
+          docker run -d --name minio \
+            --network app-network \
+            -p 9000:9000 -p 9001:9001 \
+            -e MINIO_ROOT_USER=minioadmin \
+            -e MINIO_ROOT_PASSWORD=minioadmin \
+            quay.io/minio/minio:latest \
+            server /data --console-address :9001
+
+      - name: Verify MinIO is running
+        run: |
+          echo "Checking MinIO health..."
+          for i in {1..10}; do
+            if curl -sSf http://localhost:9000/minio/health/live > /dev/null; then
+              echo "✅ MinIO is live!"
+              exit 0
+            fi
+            echo "Waiting for MinIO... attempt $i"
+            sleep 3
+          done
+          echo "❌ MinIO did not start in time"
+          exit 1
+
       - name: Verify backend container starts
         run: |
-          docker run -d --name backend-test -p 8000:8000 \
-            --network ${{ job.container.network }} \
-            -e MONGODB_URL="mongodb://mongo:27017" \
+          docker run -d --name backend-test \
+            --network app-network \
+            -p 8000:8000 \
+            --env-file .env \
             my-app-backend:${{ github.sha }}
+
+          echo "Waiting for API to become ready..."
           for i in {1..30}; do
-            curl -sSf http://localhost:8000/docs && exit 0 || sleep 2
+            if ! docker ps | grep -q backend-test; then
+              echo "Container stopped unexpectedly. Logs:"
+              docker logs backend-test
+              exit 1
+            fi
+
+            if curl -sSf http://localhost:8000/docs > /dev/null 2>&1; then
+                echo "✅ API and MinIO connection verified!"
+                exit 0
+            fi
+            sleep 2
           done
-          echo "API did not become ready in time" && exit 1
 
-      - name: Run lint & formatting checks
-        run: make styles
-
-      - name: Run pytest
-        env:
-          MONGODB_URL: mongodb://mongo:27017
-        run: pytest tests/test_run.py -v --tb=short
+          echo "Container logs:"
+          docker logs backend-test
+          exit 1

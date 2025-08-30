@@ -1,12 +1,12 @@
-import Banner from "@/components/dashboard/Banner";
-import FeaturedCategories from "@/components/dashboard/FeaturedCategories";
-import AdCards from "@/components/dashboard/AdCards";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import PopularItems from "@/components/dashboard/PopularItems";
-import Footer from "@/components/landing/Footer";
-import EndCard from "@/components/dashboard/EndCard";
-import { useContext } from "react";
-import { AuthContext } from "@/context/auth.context";
+import Banner from '@/components/dashboard/Banner';
+import FeaturedCategories from '@/components/dashboard/FeaturedCategories';
+import AdCards from '@/components/dashboard/AdCards';
+import { ScrollArea } from '@/components/ui/scroll-area';
+import PopularItems from '@/components/dashboard/PopularItems';
+import Footer from '@/components/landing/Footer';
+import EndCard from '@/components/dashboard/EndCard';
+import { useContext } from 'react';
+import { AuthContext } from '@/context/auth.context';
 
 const Dashboard = () => {
   const auth = useContext(AuthContext);

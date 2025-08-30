@@ -24,7 +24,7 @@ db_password = os.getenv("DB_PASSWORD")
 db_user = os.getenv("DB_USER")
 db_host = os.getenv("DB_HOST")
 db_name = os.getenv("DB_NAME")
-db_url = f"mongodb+srv://{db_user}:{db_password}@{db_host}/{db_name}?retryWrites=true&w=majority&appName=Cluster0"
+db_url = os.getenv("MONGODB_URL")
 
 collection_product = os.getenv("COLLECTION_PRODUCTS")
 collection_user = os.getenv("COLLECTION_USER")

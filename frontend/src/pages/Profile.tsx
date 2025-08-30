@@ -7,15 +7,15 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { ChartRadialStacked } from "@/components/charts/RadialStacked";
-import Avatar from "@/components/profile/avatar";
-import Details from "@/components/profile/details";
-import { Button } from "@/components/ui/button";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { RadialChartConfigType } from "@/types/charts/radial.stacked";
+} from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { ChartRadialStacked } from '@/components/charts/RadialStacked';
+import Avatar from '@/components/profile/avatar';
+import Details from '@/components/profile/details';
+import { Button } from '@/components/ui/button';
+import { ScrollArea } from '@/components/ui/scroll-area';
+import { RadialChartConfigType } from '@/types/charts/radial.stacked';
 
 const angles = {
   start_angle: 210,
@@ -26,25 +26,20 @@ const angles = {
 
 const card_config: RadialChartConfigType[] = [
   {
-    dataKey: "desktop",
-    stackId: "a",
+    dataKey: 'desktop',
+    stackId: 'a',
     cornerRadius: 5,
-    fill: "var(--color-desktop)",
-    className: "stroke-transparent stroke-2",
+    fill: 'var(--color-desktop)',
+    className: 'stroke-transparent stroke-2',
   },
   {
-    dataKey: "mobile",
-    fill: "var(--color-mobile)",
-    stackId: "a",
+    dataKey: 'mobile',
+    fill: 'var(--color-mobile)',
+    stackId: 'a',
     cornerRadius: 5,
-    className: "stroke-transparent stroke-2",
+    className: 'stroke-transparent stroke-2',
   },
 ];
-
-
-
-
-
 
 const EditPracticeDialog = () => {
   return (
@@ -63,7 +58,7 @@ const EditPracticeDialog = () => {
           </DialogHeader>
           <div className="grid gap-4">
             <div className="grid gap-3">
-              <Label htmlFor="name-1">Name</Label>  
+              <Label htmlFor="name-1">Name</Label>
               <Input id="name-1" name="name" defaultValue="Pedro Duarte" />
             </div>
             <div className="grid gap-3">
@@ -80,9 +75,8 @@ const EditPracticeDialog = () => {
         </DialogContent>
       </form>
     </Dialog>
-  )
-}
-
+  );
+};
 
 const Profile = () => {
   return (

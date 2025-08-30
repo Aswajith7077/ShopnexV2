@@ -1,19 +1,19 @@
-import { decrypt, encrypt } from "@/algorithm/crypto";
-import { API_ENDPOINTS, BASE_URL, getEndPoint } from "@/constants/api.enpoints";
-import { ELOCAL_STORAGE, REQUEST_METHODS } from "@/constants/api.enum";
-import { LoginResponseType, RefreshResponseType } from "@/types/api/auth.type";
+import { decrypt, encrypt } from '@/algorithm/crypto';
+import { API_ENDPOINTS, BASE_URL, getEndPoint } from '@/constants/api.enpoints';
+import { ELOCAL_STORAGE, REQUEST_METHODS } from '@/constants/api.enum';
+import { LoginResponseType, RefreshResponseType } from '@/types/api/auth.type';
 import {
   useMutation,
   UseMutationResult,
   useQuery,
-  UseQueryResult
-} from "@tanstack/react-query";
-import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
-import { toast } from "sonner";
+  UseQueryResult,
+} from '@tanstack/react-query';
+import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
+import { toast } from 'sonner';
 
 const getAuthToken = (): string | null => {
   try {
-    const authStorage = localStorage.getItem(ELOCAL_STORAGE.AUTH_STORE) ?? "";
+    const authStorage = localStorage.getItem(ELOCAL_STORAGE.AUTH_STORE) ?? '';
     const { state } = JSON.parse(decrypt(authStorage));
     // console.log(state)
     return state?.accessToken ?? null;
@@ -32,12 +32,11 @@ const getAuthToken = (): string | null => {
 //   }
 // }
 
-const readCredentials = ():LoginResponseType | null => {
+const readCredentials = (): LoginResponseType | null => {
   try {
-    const authStorage = localStorage.getItem(ELOCAL_STORAGE.AUTH_STORE) ?? "";
+    const authStorage = localStorage.getItem(ELOCAL_STORAGE.AUTH_STORE) ?? '';
     const { state } = JSON.parse(decrypt(authStorage));
     return state;
-
   } catch {
     return null;
   }
@@ -49,7 +48,7 @@ const writeCredentials = (credentials: LoginResponseType) => {
     localStorage.setItem(ELOCAL_STORAGE.AUTH_STORE, serialized_data);
     return true;
   } catch {
-    toast("Error in Writing text");
+    toast('Error in Writing text');
     return false;
   }
 };
@@ -57,9 +56,9 @@ const writeCredentials = (credentials: LoginResponseType) => {
 const axiosInstance = axios.create({
   baseURL: BASE_URL,
   headers: {
-    Accept: "application/json",
-    "Content-Type": "application/json"
-  }
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+  },
 });
 
 axiosInstance.interceptors.request.use((config) => {
@@ -74,32 +73,32 @@ axiosInstance.interceptors.response.use(
   (response) => response,
   async (error) => {
     if (error.response?.status === 401) {
-
       const headers: Record<string, string> = {
-        Accept: "application/json",
-        "Content-type": "application/json",
+        Accept: 'application/json',
+        'Content-type': 'application/json',
       };
 
-      const credentials = readCredentials()
-      const config:AxiosRequestConfig = {
+      const credentials = readCredentials();
+      const config: AxiosRequestConfig = {
         method: REQUEST_METHODS.GET as string,
         url: API_ENDPOINTS.REFRESH_ENPOINT,
         headers: headers,
         params: {
-          "refreshToken": credentials?.refreshToken
-        }
-      }
-      const response:AxiosResponse<RefreshResponseType> = await axiosInstance.request(config)
+          refreshToken: credentials?.refreshToken,
+        },
+      };
+      const response: AxiosResponse<RefreshResponseType> =
+        await axiosInstance.request(config);
 
-      if (response.status !== 200){
-        console.log("Refresh Token Expired! User is being signed out")
+      if (response.status !== 200) {
+        console.log('Refresh Token Expired! User is being signed out');
         localStorage.removeItem(ELOCAL_STORAGE.AUTH_STORE);
       }
       const new_cred = {
-        ...credentials
-      }
-      new_cred.accessToken = response.data.accessToken
-      writeCredentials(new_cred as LoginResponseType)
+        ...credentials,
+      };
+      new_cred.accessToken = response.data.accessToken;
+      writeCredentials(new_cred as LoginResponseType);
     }
     return Promise.reject(error);
   }
@@ -115,13 +114,13 @@ const apiRequest = async <TRequest = unknown, TResponse = unknown>(
   const url: string = getEndPoint(endpoint);
   const isFormData = data instanceof FormData;
   const headers: Record<string, string> = {
-    Accept: "application/json",
-    "Content-type": isFormData ? "multipart/form-data" : "application/json"
+    Accept: 'application/json',
+    'Content-type': isFormData ? 'multipart/form-data' : 'application/json',
   };
 
   if (isAuthRequired) {
     const token = getAuthToken();
-    headers.Authorization = token ? `Bearer ${token}` : "";
+    headers.Authorization = token ? `Bearer ${token}` : '';
   }
 
   const config: AxiosRequestConfig = {
@@ -129,7 +128,7 @@ const apiRequest = async <TRequest = unknown, TResponse = unknown>(
     url,
     headers: headers,
     ...(method === REQUEST_METHODS.GET ? { params: data } : { data }),
-    ...customConfig
+    ...customConfig,
   };
   const response = await axiosInstance.request<TResponse>(config);
   return response.data;
@@ -148,7 +147,7 @@ const useApiQuery = <TResponse>(
         REQUEST_METHODS.GET,
         params,
         requiresAuth
-      )
+      ),
   });
 };
 
@@ -159,7 +158,7 @@ const useApiMutation = <TRequest, TResponse>(
 ): UseMutationResult<TResponse, AxiosError, TRequest> => {
   return useMutation({
     mutationFn: (data: TRequest) =>
-      apiRequest<TRequest, TResponse>(endpoint, method, data, requiresAuth)
+      apiRequest<TRequest, TResponse>(endpoint, method, data, requiresAuth),
   });
 };
 

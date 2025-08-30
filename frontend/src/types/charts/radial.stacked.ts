@@ -1,12 +1,12 @@
-import { JSX } from "react";
+import { JSX } from 'react';
 
 type RadialChartConfigType = {
-	dataKey:string;
-	stackId:string;
-	cornerRadius:number;
-	fill:string;
-	className:string;
-}
+  dataKey: string;
+  stackId: string;
+  cornerRadius: number;
+  fill: string;
+  className: string;
+};
 
 type RadialStackedProps = {
   start_angle: number;
@@ -18,8 +18,4 @@ type RadialStackedProps = {
   card_footer?: JSX.Element;
 };
 
-
-export type{
-    RadialChartConfigType,
-    RadialStackedProps
-}
+export type { RadialChartConfigType, RadialStackedProps };

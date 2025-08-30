@@ -1,8 +1,5 @@
-
 const NexStore = () => {
-  return (
-    <div>NexStore</div>
-  )
-}
+  return <div>NexStore</div>;
+};
 
-export default NexStore
+export default NexStore;

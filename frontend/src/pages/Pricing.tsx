@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import React, { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 import {
   FaCheck,
   FaChartLine,
@@ -11,7 +11,7 @@ import {
   FaShieldAlt,
   FaHeadset,
   FaMobile,
-} from "react-icons/fa";
+} from 'react-icons/fa';
 
 // TypeScript interfaces
 interface PricingPlan {
@@ -53,102 +53,102 @@ interface TabsContentProps {
 const pricingData = {
   traders: [
     {
-      id: "basic",
-      name: "Basic",
-      subtitle: "Ideal for Solo Entrepreneurs",
-      price: "$19",
-      period: "/per month",
+      id: 'basic',
+      name: 'Basic',
+      subtitle: 'Ideal for Solo Entrepreneurs',
+      price: '$19',
+      period: '/per month',
       popular: false,
       features: [
-        "CARD RATES FROM",
-        "2.5% for 3rd-party payment providers",
-        "STANDOUT FEATURES",
-        "5 inventory locations",
-        "24/7 email support",
-        "Basic global selling (1 market)",
-        "POS Lite",
+        'CARD RATES FROM',
+        '2.5% for 3rd-party payment providers',
+        'STANDOUT FEATURES',
+        '5 inventory locations',
+        '24/7 email support',
+        'Basic global selling (1 market)',
+        'POS Lite',
       ],
-      buttonText: "Start free trial",
+      buttonText: 'Start free trial',
     },
     {
-      id: "professional",
-      name: "Professional",
-      subtitle: "Ideal for small teams",
-      price: "$49",
-      period: "/per month",
+      id: 'professional',
+      name: 'Professional',
+      subtitle: 'Ideal for small teams',
+      price: '$49',
+      period: '/per month',
       popular: true,
       features: [
-        "CARD RATES FROM",
-        "1.8% 3rd-party payment providers",
-        "STANDOUT FEATURES",
-        "20 inventory locations",
-        "24/7 chat and email support",
-        "Localized global selling (3 markets)",
-        "Advanced analytics tools",
-        "POS Lite",
+        'CARD RATES FROM',
+        '1.8% 3rd-party payment providers',
+        'STANDOUT FEATURES',
+        '20 inventory locations',
+        '24/7 chat and email support',
+        'Localized global selling (3 markets)',
+        'Advanced analytics tools',
+        'POS Lite',
       ],
-      buttonText: "Start free trial",
+      buttonText: 'Start free trial',
     },
     {
-      id: "advanced",
-      name: "Advanced",
-      subtitle: "Ideal for Scaling Teams",
-      price: "$249",
-      period: "/per month",
+      id: 'advanced',
+      name: 'Advanced',
+      subtitle: 'Ideal for Scaling Teams',
+      price: '$249',
+      period: '/per month',
       popular: false,
       features: [
-        "CARD RATES FROM",
-        "1% 3rd-party payment providers",
-        "STANDOUT FEATURES",
-        "Unlimited inventory locations",
-        "24/7 priority support",
-        "Advanced localization (10 markets)",
-        "Custom analytics dashboards",
-        "POS Lite",
-        "20 additional staff accounts",
+        'CARD RATES FROM',
+        '1% 3rd-party payment providers',
+        'STANDOUT FEATURES',
+        'Unlimited inventory locations',
+        '24/7 priority support',
+        'Advanced localization (10 markets)',
+        'Custom analytics dashboards',
+        'POS Lite',
+        '20 additional staff accounts',
       ],
-      buttonText: "Start free trial",
+      buttonText: 'Start free trial',
     },
   ],
   dealers: [
     {
-      id: "basic",
-      name: "Basic",
-      subtitle: "Ideal for Small Dealerships",
-      price: "$199",
-      period: "/per month",
+      id: 'basic',
+      name: 'Basic',
+      subtitle: 'Ideal for Small Dealerships',
+      price: '$199',
+      period: '/per month',
       popular: false,
       features: [
-        "INTEGRATION RATES FROM",
-        "2.5% for 3rd-party integrations",
-        "STANDOUT FEATURES",
-        "Multi-user access (5 users)",
-        "Basic inventory management",
-        "Customer relationship tools",
-        "24/7 phone support",
+        'INTEGRATION RATES FROM',
+        '2.5% for 3rd-party integrations',
+        'STANDOUT FEATURES',
+        'Multi-user access (5 users)',
+        'Basic inventory management',
+        'Customer relationship tools',
+        '24/7 phone support',
       ],
-      buttonText: "Start free trial",
+      buttonText: 'Start free trial',
     },
     {
-      id: "premium",
-      name: "Premium",
-      subtitle: "Ideal for Growing Teams",
-      price: "$499",
-      period: "/per month",
+      id: 'premium',
+      name: 'Premium',
+      subtitle: 'Ideal for Growing Teams',
+      price: '$499',
+      period: '/per month',
       popular: true,
       features: [
-        "INTEGRATION RATES FROM",
-        "1.8% for 3rd-party integrations",
-        "STANDOUT FEATURES",
-        "Unlimited user access",
-        "Advanced inventory management",
-        "CRM with automation",
-        "24/7 priority support",
-        "Advanced reporting",
-        "API integrations",
-        "White-label solutions",
+        'INTEGRATION RATES FROM',
+        '1.8% for 3rd-party integrations',
+        'STANDOUT FEATURES',
+        'Unlimited user access',
+        'Advanced inventory management',
+        'CRM with automation',
+        '24/7 priority support',
+        'Advanced reporting',
+        'API integrations',
+        'White-label solutions',
       ],
-      buttonText: "Start free trial",
+      buttonText: 'Start free trial',
     },
   ],
 };
@@ -168,8 +168,8 @@ const BillingToggle = ({
           onClick={() => onToggle(false)}
           className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
             !isYearly
-              ? "bg-white text-black"
-              : "text-slate-400 hover:text-white"
+              ? 'bg-white text-black'
+              : 'text-slate-400 hover:text-white'
           }`}
         >
           Monthly billing
@@ -177,7 +177,7 @@ const BillingToggle = ({
         <button
           onClick={() => onToggle(true)}
           className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-            isYearly ? "bg-white text-black" : "text-slate-400 hover:text-white"
+            isYearly ? 'bg-white text-black' : 'text-slate-400 hover:text-white'
           }`}
         >
           Yearly billing
@@ -196,9 +196,9 @@ const FeatureList = ({ features }: { features: string[] }) => {
     <div className="space-y-3 mb-8">
       {features.map((feature, index) => (
         <div key={index}>
-          {feature === "CARD RATES FROM" ||
-          feature === "STANDOUT FEATURES" ||
-          feature === "INTEGRATION RATES FROM" ? (
+          {feature === 'CARD RATES FROM' ||
+          feature === 'STANDOUT FEATURES' ||
+          feature === 'INTEGRATION RATES FROM' ? (
             <div className="text-xs font-semibold text-slate-400 tracking-wider uppercase mt-4 mb-2">
               {feature}
             </div>
@@ -224,7 +224,7 @@ const PricingCard = ({
 }) => {
   const getAdjustedPrice = (price: string) => {
     if (!isYearly) return price;
-    const numPrice = parseInt(price.replace("$", ""));
+    const numPrice = parseInt(price.replace('$', ''));
     return `$${Math.round(numPrice * 0.8)}`;
   };
 
@@ -232,7 +232,7 @@ const PricingCard = ({
     <div className=" bg-black">
       <Card
         className={`h-full bg-black rounded-4xl p-6 ${
-          plan.popular ? "border-cyan-600" : ""
+          plan.popular ? 'border-cyan-600' : ''
         }`}
       >
         {plan.popular && (
@@ -256,7 +256,7 @@ const PricingCard = ({
         <FeatureList features={plan.features} />
 
         <Button
-          variant={plan.popular ? "default" : "secondary"}
+          variant={plan.popular ? 'default' : 'secondary'}
           className="w-full py-7 rounded-lg"
         >
           {plan.buttonText}
@@ -307,8 +307,8 @@ const TabsTrigger = ({
     <button
       className={`inline-flex items-center justify-center whitespace-nowrap rounded-md px-6 py-2 text-sm font-medium transition-all ${
         isActive
-          ? "bg-slate-950 text-white shadow-sm"
-          : "hover:bg-slate-700 hover:text-white"
+          ? 'bg-slate-950 text-white shadow-sm'
+          : 'hover:bg-slate-700 hover:text-white'
       }`}
       onClick={() => onTabChange?.(value)}
     >
@@ -329,7 +329,6 @@ const SubscriptionsPage = () => {
 
   return (
     <div className="min-h-screen w-screen bg-black text-white font-[Open_Sans] px-8 py-16">
-      
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
@@ -337,10 +336,10 @@ const SubscriptionsPage = () => {
             Get started for free today
           </h1>
           <h2 className="text-4xl font-bold mb-6 text-white">
-            unlock{" "}
+            unlock{' '}
             <span className="bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
               only $1
-            </span>{" "}
+            </span>{' '}
             for your first month
           </h2>
           <p className="text-slate-400 mb-8 text-lg">

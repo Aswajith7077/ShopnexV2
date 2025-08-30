@@ -1,24 +1,24 @@
-import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { useNavigate } from "react-router-dom";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { LoginFormSchema } from "@/data/api/auth.data";
-import { z } from "zod";
-import { useForm } from "react-hook-form";
+import { Button } from '@/components/ui/button';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { useNavigate } from 'react-router-dom';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { LoginFormSchema } from '@/data/api/auth.data';
+import { z } from 'zod';
+import { useForm } from 'react-hook-form';
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormMessage,
-} from "@/components/ui/form";
-import { useApiMutation, writeCredentials } from "@/hooks/useApiService";
-import { API_ENDPOINTS } from "@/constants/api.enpoints";
-import { REQUEST_METHODS } from "@/constants/api.enum";
-import { LoginRequestType, LoginResponseType } from "@/types/api/auth.type";
-import { AppName, LogoIcon } from "@/constants/app.details";
+} from '@/components/ui/form';
+import { useApiMutation, writeCredentials } from '@/hooks/useApiService';
+import { API_ENDPOINTS } from '@/constants/api.enpoints';
+import { REQUEST_METHODS } from '@/constants/api.enum';
+import { LoginRequestType, LoginResponseType } from '@/types/api/auth.type';
+import { AppName, LogoIcon } from '@/constants/app.details';
 
 const FormComponent = () => {
   const navigate = useNavigate();
@@ -35,7 +35,7 @@ const FormComponent = () => {
     mutate(values, {
       onSuccess: (response) => {
         writeCredentials(response);
-        navigate("/home/dashboard");
+        navigate('/home/dashboard');
       },
     });
   };
@@ -48,9 +48,9 @@ const FormComponent = () => {
       >
         <div className="flex flex-row w-full px-20 lg:px-[22%] justify-end">
           <Button
-            variant={"ghost"}
+            variant={'ghost'}
             className="cursor-pointer"
-            onClick={() => navigate("/signin")}
+            onClick={() => navigate('/signin')}
           >
             Sign in
           </Button>
@@ -59,14 +59,14 @@ const FormComponent = () => {
           <img src="#" alt="" />
 
           <h2 className="font-semibold text-3xl w-full">
-            Zevrin Welcomes you{" "}
+            Zevrin Welcomes you{' '}
           </h2>
           <p className="w-full mb-5 dark:text-gray-400 text-sm">
             Enter your credentials
           </p>
 
           <FormField
-            name={"username"}
+            name={'username'}
             control={form.control}
             render={({ field }) => (
               <FormItem>
@@ -84,7 +84,7 @@ const FormComponent = () => {
           />
 
           <FormField
-            name={"password"}
+            name={'password'}
             control={form.control}
             render={({ field }) => (
               <FormItem>
@@ -106,16 +106,16 @@ const FormComponent = () => {
               <Checkbox className="border-slate-500" />
               <Label>Remember Me</Label>
             </div>
-            <Button variant={"link"} className="py-1 my-1 cursor-pointer ">
+            <Button variant={'link'} className="py-1 my-1 cursor-pointer ">
               Forgot Password
             </Button>
           </div>
           <Button
-            variant={"default"}
+            variant={'default'}
             disabled={isLoading}
             className="rounded-lg text-base cursor-pointer py-6 w-full"
           >
-            {isLoading ? "Logging In..." : "Login"}
+            {isLoading ? 'Logging In...' : 'Login'}
           </Button>
           <div className="flex flex-row items-center px-2 w-full">
             <div className="hidden border-slate-400 md:inline w-1/3 border h-0" />
@@ -125,7 +125,7 @@ const FormComponent = () => {
             <div className="hidden border-slate-400 md:inline w-1/3 border h-0" />
           </div>
           <Button
-            variant={"outline"}
+            variant={'outline'}
             className="py-6 rounded-full border-gray-900 w-full cursor-pointer"
           >
             Continue with Google
@@ -134,13 +134,13 @@ const FormComponent = () => {
 
         <div className="flex flex-row w-full justify-center ">
           <Button
-            variant={"link"}
+            variant={'link'}
             className="text-base text-gray-400 cursor-pointer"
           >
             Privacy
           </Button>
           <Button
-            variant={"link"}
+            variant={'link'}
             className="text-base text-gray-400 cursor-pointer"
           >
             Terms and Conditions
@@ -152,7 +152,7 @@ const FormComponent = () => {
 };
 
 const Login = () => {
-  document.body.classList.add("dark");
+  document.body.classList.add('dark');
   return (
     <main className="flex flex-row w-screen h-screen bg-gray-400 dark:bg-gradient-to-br dark:from-slate-950 to-slate-900 ">
       <div className="hidden lg:flex flex-col justify-between lg:w-1/2 p-15">

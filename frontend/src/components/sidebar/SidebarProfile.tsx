@@ -4,10 +4,10 @@ import {
   ChevronsUpDown,
   CreditCard,
   LogOut,
-  Sparkles
-} from "lucide-react";
+  Sparkles,
+} from 'lucide-react';
 
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,18 +15,18 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuTrigger
-} from "@/components/ui/dropdown-menu";
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  useSidebar
-} from "@/components/ui/sidebar";
-import { useNavigate } from "react-router-dom";
+  useSidebar,
+} from '@/components/ui/sidebar';
+import { useNavigate } from 'react-router-dom';
 
 export function SidebarProfile({
-  profile
+  profile,
 }: {
   profile: {
     fullname: string;
@@ -47,22 +47,22 @@ export function SidebarProfile({
             >
               <Avatar className="h-8 w-8 rounded-lg">
                 {/* <AvatarImage src={user.avatar} alt={user.name} /> */}
-                <AvatarFallback className="rounded-lg">{profile.fullname.slice(0,2)}</AvatarFallback>
+                <AvatarFallback className="rounded-lg">
+                  {profile.fullname.slice(0, 2)}
+                </AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
                 <span className="truncate font-semibold">
                   {profile.fullname}
                 </span>
-                <span className="truncate text-xs">
-                  {profile.username}
-                </span>
+                <span className="truncate text-xs">{profile.username}</span>
               </div>
               <ChevronsUpDown className="ml-auto size-4" />
             </SidebarMenuButton>
           </DropdownMenuTrigger>
           <DropdownMenuContent
             className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
-            side={isMobile ? "bottom" : "right"}
+            side={isMobile ? 'bottom' : 'right'}
             align="end"
             sideOffset={4}
           >
@@ -70,15 +70,15 @@ export function SidebarProfile({
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                 <Avatar className="h-8 w-8 rounded-lg">
                   {/* <AvatarImage src={user.avatar} alt={user.name} /> */}
-                  <AvatarFallback className="rounded-lg">{profile.fullname.slice(0,2)}</AvatarFallback>
+                  <AvatarFallback className="rounded-lg">
+                    {profile.fullname.slice(0, 2)}
+                  </AvatarFallback>
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
                   <span className="truncate font-semibold">
                     {profile.fullname}
                   </span>
-                  <span className="truncate text-xs">
-                    {profile.username}
-                  </span>
+                  <span className="truncate text-xs">{profile.username}</span>
                 </div>
               </div>
             </DropdownMenuLabel>

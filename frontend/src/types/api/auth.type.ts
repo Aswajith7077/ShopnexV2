@@ -1,32 +1,30 @@
-
-
 type SigninRequesttype = {
-    email:string,
-    username:string,
-    fullname:string,
-    password:string
-}
+  email: string;
+  username: string;
+  fullname: string;
+  password: string;
+};
 
 type RefreshResponseType = {
-    accessToken:string
-}
+  accessToken: string;
+};
 
 type LoginRequestType = {
-    username:string,
-    password:string
-}
+  username: string;
+  password: string;
+};
 
 type LoginResponseType = {
-    email:string,
-    fullname:string,
-    username:string,
-    accessToken:string,
-    refreshToken:string,
-}
+  email: string;
+  fullname: string;
+  username: string;
+  accessToken: string;
+  refreshToken: string;
+};
 
-export type{
-    LoginRequestType,
-    LoginResponseType,
-    SigninRequesttype,
-    RefreshResponseType
-}
+export type {
+  LoginRequestType,
+  LoginResponseType,
+  SigninRequesttype,
+  RefreshResponseType,
+};

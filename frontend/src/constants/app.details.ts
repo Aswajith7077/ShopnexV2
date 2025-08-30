@@ -1,8 +1,4 @@
+const AppName = 'Zevrin';
+const LogoIcon = '/ZevrinIcon.svg';
 
-const AppName = "Zevrin";
-const LogoIcon = "/ZevrinIcon.svg"
-
-export{
-    AppName,
-    LogoIcon
-}
+export { AppName, LogoIcon };

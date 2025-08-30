@@ -1,6 +1,5 @@
 // import { FeaturedCategoryType } from "@/types/api/dashboard.type";
 
-
 // const featured_categories:FeaturedCategoryType[] = [
 //   {
 //     title: "Productivity",
@@ -73,6 +72,5 @@
 //     ]
 //   }
 // ];
-
 
 // export{featured_categories}

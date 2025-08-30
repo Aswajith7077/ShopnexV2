@@ -1,35 +1,28 @@
-import { Label, PolarRadiusAxis, RadialBar, RadialBarChart } from "recharts";
+import { Label, PolarRadiusAxis, RadialBar, RadialBarChart } from 'recharts';
 
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from "@/components/ui/chart";
-import { RadialStackedProps } from "@/types/charts/radial.stacked";
+} from '@/components/ui/chart';
+import { RadialStackedProps } from '@/types/charts/radial.stacked';
 
-export const description = "A radial chart with stacked sections";
+export const description = 'A radial chart with stacked sections';
 
-const chartData = [{ month: "january", desktop: 1260, mobile: 570 }];
+const chartData = [{ month: 'january', desktop: 1260, mobile: 570 }];
 
 const chartConfig = {
   desktop: {
-    label: "Deals",
-    color: "var(--chart-1)",
+    label: 'Deals',
+    color: 'var(--chart-1)',
   },
   mobile: {
-    label: "Consumed",
-    color: "var(--chart-2)",
+    label: 'Consumed',
+    color: 'var(--chart-2)',
   },
 } satisfies ChartConfig;
-
-
 
 export function ChartRadialStacked({
   start_angle,
@@ -45,7 +38,7 @@ export function ChartRadialStacked({
   return (
     <Card
       className={`flex flex-col bg-slate-900 ${
-        className !== undefined ? className : ""
+        className !== undefined ? className : ''
       }`}
     >
       <CardHeader className="items-center pb-0">
@@ -53,10 +46,7 @@ export function ChartRadialStacked({
         {/* <CardDescription>January - June 2024</CardDescription> */}
       </CardHeader>
       <CardContent className="flex items-center pb-0">
-        <ChartContainer
-          config={chartConfig}
-          className="w-full"
-        >
+        <ChartContainer config={chartConfig} className="w-full">
           <RadialBarChart
             data={chartData}
             startAngle={start_angle}
@@ -68,10 +58,10 @@ export function ChartRadialStacked({
               cursor={false}
               content={<ChartTooltipContent hideLabel />}
             />
-            <PolarRadiusAxis tick={false} tickLine={false} axisLine={false} >
+            <PolarRadiusAxis tick={false} tickLine={false} axisLine={false}>
               <Label
                 content={({ viewBox }) => {
-                  if (viewBox && "cx" in viewBox && "cy" in viewBox) {
+                  if (viewBox && 'cx' in viewBox && 'cy' in viewBox) {
                     return (
                       <text x={viewBox.cx} y={viewBox.cy} textAnchor="middle">
                         <tspan
@@ -86,7 +76,7 @@ export function ChartRadialStacked({
                           y={(viewBox.cy || 0) + 4}
                           className="fill-muted-foreground"
                         >
-                         Transactions
+                          Transactions
                         </tspan>
                       </text>
                     );
@@ -94,9 +84,7 @@ export function ChartRadialStacked({
                 }}
               />
             </PolarRadiusAxis>
-            <div>
-              
-            </div>
+            <div></div>
 
             {/* Config for the Chart */}
             {card_config &&
