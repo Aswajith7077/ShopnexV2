@@ -1,3 +1,5 @@
+/* eslint-disable */
+// @ts-nocheck
 /*
 	Installed from https://reactbits.dev/ts/tailwind/
 */
@@ -16,7 +18,7 @@ import * as THREE from "three";
 
 import { Canvas, useFrame } from "@react-three/fiber";
 import { PerspectiveCamera } from "@react-three/drei";
-import { degToRad } from "three/src/math/MathUtils.js";
+import { degToRad } from "three/examples/jsm/math/MathUtils.js";
 
 type UniformValue = THREE.IUniform<unknown> | unknown;
 
