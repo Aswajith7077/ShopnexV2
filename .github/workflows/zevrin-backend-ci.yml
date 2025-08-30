@@ -120,7 +120,7 @@ jobs:
           exit 1
 
       - name: Run lint & formatting checks
-        run: make styles
+        run: make check
 
       - name: Run pytest
         env:

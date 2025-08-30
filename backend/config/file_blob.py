@@ -28,7 +28,9 @@ try:
 
     # Test connection
     buckets = minio_client.list_buckets()
-    print("✅ MinIO Connection Successful. Buckets:", [bucket.name for bucket in buckets])
+    print(
+        "✅ MinIO Connection Successful. Buckets:", [bucket.name for bucket in buckets]
+    )
 
 except S3Error as e:
     print("❌ MinIO S3 Error:", e)
