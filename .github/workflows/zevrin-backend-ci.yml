@@ -37,8 +37,9 @@ jobs:
           --health-interval=10s
           --health-timeout=5s
           --health-retries=5
-          --entrypoint ""
-        
+          --entrypoint /usr/bin/minio
+        volumes:
+          - /tmp/data:/data
 
     steps:
       - name: Checkout repository
@@ -111,6 +112,12 @@ jobs:
       - name: Build backend Docker image
         run: docker build -t my-app-backend:${{ github.sha }} .
 
+      - name: Configure MinIO
+        run: |
+          docker exec $(docker ps -q -f name=minio) minio server /data --console-address ":9001" &
+          echo "Waiting for MinIO to start..."
+          sleep 5
+      
       - name: Verify MinIO is running
         run: |
           echo "Checking MinIO health..."
@@ -124,7 +131,6 @@ jobs:
           done
           echo "❌ MinIO did not start in time"
           exit 1
-
 
       - name: Verify backend container starts
         run: |
