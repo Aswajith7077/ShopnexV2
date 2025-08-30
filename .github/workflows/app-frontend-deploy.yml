@@ -22,4 +22,4 @@ jobs:
           npm run build
 
       - name: Deploy to Vercel
-        run: vercel --prod --token=${{ secrets.ZEVRIN_VERCEL_TOKEN }} --cwd=frontend --confirm --scope=${{ secrets.ZEVRIN_APP_ORG }} --project=${{ secrets.ZEVRIN_APP_PROJ }}
+        run: vercel --prod --token=${{ secrets.ZEVRIN_VERCEL_TOKEN }} --cwd=frontend --confirm
