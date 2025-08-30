@@ -18,11 +18,8 @@ jobs:
       - name: Install Dependencies & Build
         working-directory: frontend
         run: |
-          npm install --force
+          npm install --legacy-peer-deps
           npm run build
 
       - name: Deploy to Vercel
-        run: vercel --prod --token=${{ secrets.ZEVRIN_VERCEL_TOKEN }} --cwd=frontend
-        env:
-          VERCEL_ORG_ID: ${{ secrets.ZEVRIN_APP_ORG }}
-          VERCEL_PROJECT_ID: ${{ secrets.ZEVRIN_APP_PROJ }}
+        run: vercel --prod --token=${{ secrets.ZEVRIN_VERCEL_TOKEN }} --cwd=frontend --confirm --scope=${{ secrets.ZEVRIN_APP_ORG }} --project=${{ secrets.ZEVRIN_APP_PROJ }}
