@@ -1,4 +1,4 @@
-name: Zevri Frontend CI
+name: Zevri App Frontend CI
 
 on:
   push:

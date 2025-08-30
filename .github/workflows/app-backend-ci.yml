@@ -1,4 +1,4 @@
-name: Zevrin Backend CI
+name: Zevrin App Backend CI
 
 on:
   push:
