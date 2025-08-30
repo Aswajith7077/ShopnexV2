@@ -8,7 +8,6 @@ from minio.error import S3Error
 # Zevrin Imports
 from config.config import debug
 from config.config import minio_access_key
-from config.config import minio_port
 from config.config import minio_secret_key
 from config.config import minio_server
 

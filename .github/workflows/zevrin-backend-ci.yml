@@ -29,9 +29,6 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup environment
-        env:
-          JWT_ACCESS_KEY: ba793b37fe78e957b98cfbbc8236675a5cef06c00f6edccfd48ffae86405fe6f
-          JWT_REFRESH_KEY: c45461329c6f206008f6bea781bc5ac9e75e7a165f1a8724fd13e315d1f84d35
         run: |
           cat << EOF > .env
           DB_USER=admin
@@ -62,15 +59,19 @@ jobs:
           MINIO_ROOT_PASSWORD=minioadmin
           MINIO_SERVER=http://minio:9000
           MINIO_PROD_SERVER=http://minio:9000
-
+          
           EOF
 
       - name: Build backend Docker image
         run: docker build -t my-app-backend:${{ github.sha }} .
 
+      - name: Create Docker network
+        run: docker network create app-network || true
+
       - name: Start MinIO manually
         run: |
           docker run -d --name minio \
+            --network app-network \
             -p 9000:9000 -p 9001:9001 \
             -e MINIO_ROOT_USER=minioadmin \
             -e MINIO_ROOT_PASSWORD=minioadmin \
@@ -94,6 +95,7 @@ jobs:
       - name: Verify backend container starts
         run: |
           docker run -d --name backend-test \
+            --network app-network \
             -p 8000:8000 \
             --env-file .env \
             my-app-backend:${{ github.sha }}
