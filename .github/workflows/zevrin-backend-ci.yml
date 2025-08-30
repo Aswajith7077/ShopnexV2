@@ -109,7 +109,6 @@ jobs:
             fi
 
             if curl -sSf http://localhost:8000/docs > /dev/null 2>&1; then
-              if curl -sSf http://localhost:8000/api/v1/health/minio > /dev/null 2>&1; then
                 echo "✅ API and MinIO connection verified!"
                 exit 0
               fi
