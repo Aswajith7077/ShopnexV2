@@ -1,15 +1,15 @@
-import AppSidebar from "@/components/AppSidebar";
-import Navbar from "@/components/Navbar";
-import { SidebarProvider } from "@/components/ui/sidebar";
-import { AuthContextProvider } from "@/context/auth.context";
-import { HomeContext } from "@/context/home.context";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { useState } from "react";
-import { Outlet } from "react-router-dom";
+import AppSidebar from '@/components/AppSidebar';
+import Navbar from '@/components/Navbar';
+import { SidebarProvider } from '@/components/ui/sidebar';
+import { AuthContextProvider } from '@/context/auth.context';
+import { HomeContext } from '@/context/home.context';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { useState } from 'react';
+import { Outlet } from 'react-router-dom';
 
 const client = new QueryClient();
 const Home = () => {
-  const [searchText, setSearchText] = useState<string>("");
+  const [searchText, setSearchText] = useState<string>('');
   const [productName, setProductName] = useState<string | undefined>(undefined);
 
   return (

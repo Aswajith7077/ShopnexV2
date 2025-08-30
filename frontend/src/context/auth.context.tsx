@@ -1,6 +1,6 @@
-import { readCredentials } from "@/hooks/useApiService";
-import { createContext, useContext, useEffect, useState } from "react";
-import type { LoginResponseType as User } from "@/types/api/auth.type";
+import { readCredentials } from '@/hooks/useApiService';
+import { createContext, useContext, useEffect, useState } from 'react';
+import type { LoginResponseType as User } from '@/types/api/auth.type';
 
 const AuthContext = createContext<User | undefined>(undefined);
 
@@ -8,7 +8,7 @@ const useAuthContext = () => {
   const auth = useContext(AuthContext);
   if (!auth) {
     throw new Error(
-      "Context Error: Auth context is undefined! Wrap your component with AuthProvider."
+      'Context Error: Auth context is undefined! Wrap your component with AuthProvider.'
     );
   }
   return auth;
@@ -23,15 +23,15 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
       setAuth(readCredentials());
     };
 
-    window.addEventListener("storage", handleStorage);
+    window.addEventListener('storage', handleStorage);
 
     return () => {
-      window.removeEventListener("storage", handleStorage);
+      window.removeEventListener('storage', handleStorage);
     };
   }, []);
 
   if (!auth) {
-    throw new Error("Auth is not being configured");
+    throw new Error('Auth is not being configured');
   }
 
   return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>;

@@ -2,8 +2,6 @@ import { CONFIG } from '@/config/config';
 
 const BASE_URL = CONFIG.BASE_URL;
 
-
-
 const enum API_ENDPOINTS {
   // User Endpoints
   LOGIN_ENDPOINT = `auth/login`,
@@ -20,14 +18,13 @@ const enum API_ENDPOINTS {
   GET_DETAILS_ENDPOINT = `products/get_details`,
 
   // Auth Endpoints
-  REFRESH_ENPOINT = `auth/refresh`
+  REFRESH_ENPOINT = `auth/refresh`,
 }
 
-
-const getEndPoint = (endpoint:API_ENDPOINTS) => {
-    const normalized_url = BASE_URL.endsWith('/') ? BASE_URL : `${BASE_URL}/`;
-    return `${normalized_url}${endpoint}`;
-}
+const getEndPoint = (endpoint: API_ENDPOINTS) => {
+  const normalized_url = BASE_URL.endsWith('/') ? BASE_URL : `${BASE_URL}/`;
+  return `${normalized_url}${endpoint}`;
+};
 
 const getEndModifiedGetPoint = (
   endpoint: API_ENDPOINTS,
@@ -41,9 +38,4 @@ const getEndModifiedGetPoint = (
   );
 };
 
-export{
-    BASE_URL,
-    getEndPoint,
-    getEndModifiedGetPoint,
-    API_ENDPOINTS,
-}
+export { BASE_URL, getEndPoint, getEndModifiedGetPoint, API_ENDPOINTS };

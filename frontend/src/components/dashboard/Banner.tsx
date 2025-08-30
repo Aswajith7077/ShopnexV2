@@ -1,31 +1,33 @@
-import { Card } from "@/components/ui/card";
-import Autoplay from "embla-carousel-autoplay";
+import { Card } from '@/components/ui/card';
+import Autoplay from 'embla-carousel-autoplay';
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/components/ui/carousel";
-import { API_ENDPOINTS } from "@/constants/api.enpoints";
-import { useApiQuery } from "@/hooks/useApiService";
+} from '@/components/ui/carousel';
+import { API_ENDPOINTS } from '@/constants/api.enpoints';
+import { useApiQuery } from '@/hooks/useApiService';
 import {
   BannerResponseType,
   ContentAlignmentEnum,
-} from "@/types/products/banner.type";
-import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+} from '@/types/products/banner.type';
+import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 
 const getTextColor = (color: string) => {
   return `text-${color}`;
 };
 
 const getTextAlignment = (alignment: ContentAlignmentEnum) => {
-  return alignment === ContentAlignmentEnum.left ? "items-start" : "items-end";
+  return alignment === ContentAlignmentEnum.left ? 'items-start' : 'items-end';
 };
 
 const Banner = () => {
-  const { data } = useApiQuery<BannerResponseType[]>(API_ENDPOINTS.LIST_BANNERS_ENDPOINT);
+  const { data } = useApiQuery<BannerResponseType[]>(
+    API_ENDPOINTS.LIST_BANNERS_ENDPOINT
+  );
 
   return (
     <Carousel
@@ -48,8 +50,8 @@ const Banner = () => {
                   )} justify-center p-15  border-none min-h-[500px]`}
                   style={{
                     backgroundImage: `url(${banner_record.file_url})`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center", // set the height you want
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center', // set the height you want
                   }}
                 >
                   <div

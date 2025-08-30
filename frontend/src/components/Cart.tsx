@@ -1,5 +1,4 @@
-import { Button } from "./ui/button"
-
+import { Button } from './ui/button';
 
 const TopComponent = () => {
   return (
@@ -7,8 +6,8 @@ const TopComponent = () => {
       <h1 className="text-3xl font-bold">Your Items are ready</h1>
       <p>Your shopping cart is empty.</p>
     </div>
-  )
-}
+  );
+};
 
 const PaymentSummary = () => {
   return (
@@ -18,13 +17,17 @@ const PaymentSummary = () => {
       <p className="mt-2">Total Price: $0.00</p>
       <p className="mt-2">Shipping: Free</p>
       <div className="flex flex-col">
-        <p className="w-full flex items-center font-bold text-left justify-center">Grand Total</p>
-        <p className="bg-gradient-to-br text-3xl items-center from-cyan-400 to-blue-600 bg-clip-text text-transparent mt-2 font-bold">0.00 USD</p>
+        <p className="w-full flex items-center font-bold text-left justify-center">
+          Grand Total
+        </p>
+        <p className="bg-gradient-to-br text-3xl items-center from-cyan-400 to-blue-600 bg-clip-text text-transparent mt-2 font-bold">
+          0.00 USD
+        </p>
       </div>
       <Button className="mt-4 px-4 py-2 rounded-md">Checkout</Button>
     </div>
-  )
-}
+  );
+};
 
 const Cart = () => {
   return (
@@ -35,11 +38,10 @@ const Cart = () => {
           {/* Cart items will be displayed here */}
           <p className="text-lg">No items in the cart.</p>
         </div>
-        <PaymentSummary/>
+        <PaymentSummary />
       </div>
-      
     </div>
-  )
-}
+  );
+};
 
-export default Cart
+export default Cart;

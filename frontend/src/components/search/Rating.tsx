@@ -1,7 +1,7 @@
-import { IconType } from "react-icons/lib";
-import { MdOutlineStarPurple500 } from "react-icons/md";
-import { MdOutlineStarOutline } from "react-icons/md";
-import { MdOutlineStarHalf } from "react-icons/md";
+import { IconType } from 'react-icons/lib';
+import { MdOutlineStarPurple500 } from 'react-icons/md';
+import { MdOutlineStarOutline } from 'react-icons/md';
+import { MdOutlineStarHalf } from 'react-icons/md';
 
 const renderStars = (value: number): IconType[] => {
   const result: IconType[] = [];
@@ -15,7 +15,15 @@ const renderStars = (value: number): IconType[] => {
   return result;
 };
 
-const Rating = ({ score,display_number  = false,size = 26}: { score: number ,display_number:boolean,size:number}) => {
+const Rating = ({
+  score,
+  display_number = false,
+  size = 26,
+}: {
+  score: number;
+  display_number: boolean;
+  size: number;
+}) => {
   const stars: IconType[] = renderStars(score);
   return (
     <div className="flex flex-row items-center gap-5">
@@ -24,9 +32,7 @@ const Rating = ({ score,display_number  = false,size = 26}: { score: number ,dis
           return <StarComponent key={key} size={size} />;
         })}
       </div>
-      {display_number && <h1 className="font-semibold text-lg">
-        {score}
-      </h1>}
+      {display_number && <h1 className="font-semibold text-lg">{score}</h1>}
     </div>
   );
 };

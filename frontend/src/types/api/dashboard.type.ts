@@ -1,46 +1,43 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction } from 'react';
 
 type ImageType = {
-  image_url:string;
-  file_name:string;
-}
+  image_url: string;
+  file_name: string;
+};
 
 type CategoryType = {
-  title:string;
-  image:ImageType;
-  redirect_url:string;
-}
+  title: string;
+  image: ImageType;
+  redirect_url: string;
+};
 
 type BlobDataType = {
-  bucket:string;
-  file_path:string;
-}
+  bucket: string;
+  file_path: string;
+};
 
 type FeaturedCategoryType = {
-    title:string,
-    blob_data:BlobDataType;
-    sub_categories:CategoryType[]
-}
+  title: string;
+  blob_data: BlobDataType;
+  sub_categories: CategoryType[];
+};
 
 type CategoryButtonsPropType = {
   state: number;
   setState: Dispatch<SetStateAction<number>>;
-  data: FeaturedCategoryType[] | undefined
+  data: FeaturedCategoryType[] | undefined;
 };
 
-
-
-
 type ListProductsResponseType = {
-  NAME:string,
-  BRAND:string,
-  FINAL_PRICE:number,
-  CURRENCY:string,
-  CATEGORIES:string[],
-  IMAGES:string,
-  RATING:number,
-  STOCK:number
-}
+  NAME: string;
+  BRAND: string;
+  FINAL_PRICE: number;
+  CURRENCY: string;
+  CATEGORIES: string[];
+  IMAGES: string;
+  RATING: number;
+  STOCK: number;
+};
 
 // {
 //     "NAME": "KASOTT Replacement Airpod Pro Ear Tip Premium Memory Foam Earbud Tips, Perfect Noise Reduction, Ultra-Comfort, Anti-Slip Eartips, Fit in The Charging Case (Sizes M, 3 Pairs)",
@@ -56,11 +53,9 @@ type ListProductsResponseType = {
 //     "STOCK": 0
 //   },
 
-
-
-export type{
-    FeaturedCategoryType,
-    CategoryButtonsPropType,
-    ListProductsResponseType,
-    CategoryType
-}
+export type {
+  FeaturedCategoryType,
+  CategoryButtonsPropType,
+  ListProductsResponseType,
+  CategoryType,
+};

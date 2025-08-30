@@ -1,9 +1,4 @@
-import {
-  Folder,
-  Forward,
-  MoreHorizontal,
-  Trash2,
-} from "lucide-react"
+import { Folder, Forward, MoreHorizontal, Trash2 } from 'lucide-react';
 
 import {
   DropdownMenu,
@@ -11,7 +6,7 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from '@/components/ui/dropdown-menu';
 import {
   SidebarGroup,
   SidebarGroupLabel,
@@ -20,21 +15,21 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
-} from "@/components/ui/sidebar"
-import { IconType } from "react-icons/lib"
-import { Button } from "../ui/button"
-import { useNavigate } from "react-router-dom"
+} from '@/components/ui/sidebar';
+import { IconType } from 'react-icons/lib';
+import { Button } from '../ui/button';
+import { useNavigate } from 'react-router-dom';
 
 export function SidebarUtilities({
   utilities,
-  title
+  title,
 }: {
   utilities: {
-    title: string
-    url: string
-    icon: IconType
-  }[],
-  title:string
+    title: string;
+    url: string;
+    icon: IconType;
+  }[];
+  title: string;
 }) {
   const { isMobile } = useSidebar();
   const navigate = useNavigate();
@@ -46,7 +41,11 @@ export function SidebarUtilities({
         {utilities.map((item) => (
           <SidebarMenuItem key={item.title} className="flex justify-center">
             <SidebarMenuButton asChild>
-              <Button variant={'ghost'} className="justify-start cursor-pointer py-5" onClick={() => navigate(item.url)}>
+              <Button
+                variant={'ghost'}
+                className="justify-start cursor-pointer py-5"
+                onClick={() => navigate(item.url)}
+              >
                 <item.icon />
                 <span>{item.title}</span>
               </Button>
@@ -60,8 +59,8 @@ export function SidebarUtilities({
               </DropdownMenuTrigger>
               <DropdownMenuContent
                 className="w-48 rounded-lg"
-                side={isMobile ? "bottom" : "right"}
-                align={isMobile ? "end" : "start"}
+                side={isMobile ? 'bottom' : 'right'}
+                align={isMobile ? 'end' : 'start'}
               >
                 <DropdownMenuItem>
                   <Folder className="text-muted-foreground" />
@@ -80,8 +79,7 @@ export function SidebarUtilities({
             </DropdownMenu>
           </SidebarMenuItem>
         ))}
-        
       </SidebarMenu>
     </SidebarGroup>
-  )
+  );
 }

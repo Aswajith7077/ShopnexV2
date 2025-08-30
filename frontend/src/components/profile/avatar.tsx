@@ -1,7 +1,7 @@
-import { useAuthContext } from "@/context/auth.context";
-import { Badge } from "../ui/badge";
+import { useAuthContext } from '@/context/auth.context';
+import { Badge } from '../ui/badge';
 
-const role = "dealer";
+const role = 'dealer';
 const Avatar = () => {
   const auth = useAuthContext();
   return (
@@ -21,7 +21,7 @@ const Avatar = () => {
           </h3>
         </div>
         <h3 className="font-open-sans text-sm text-gray-300">
-          {role === "dealer" ? (
+          {role === 'dealer' ? (
             <Badge variant="secondary" className="bg-cyan-700">
               Dealer
             </Badge>
