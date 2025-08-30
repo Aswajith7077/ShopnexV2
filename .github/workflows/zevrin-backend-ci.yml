@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 jobs:
   backend_ci:
-    name: Zevrin Backend - build, lint & tests
+    name: Zevrin Backend - container & blob
     runs-on: ubuntu-latest
     defaults:
       run:

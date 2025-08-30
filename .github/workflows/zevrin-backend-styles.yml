@@ -1,4 +1,4 @@
-name: Zevrin Backend CI
+name: Zevrin Backend Styles
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
 
 jobs:
   backend_ci:
-    name: Zevrin Backend - build, lint & tests
+    name: Zevrin Backend - lint & tests
     runs-on: ubuntu-latest
     defaults:
       run:
