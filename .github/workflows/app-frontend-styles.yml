@@ -38,3 +38,6 @@ jobs:
 
       - name: Run Prettier format check
         run: pnpm run format:check
+
+      - name: Run Build
+        run: pnpm run build
