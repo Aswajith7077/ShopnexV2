@@ -32,4 +32,4 @@ jobs:
           pnpm run build
 
       - name: Deploy to Vercel
-        run: vercel --prod --token=${{ secrets.ZEVRIN_VERCEL_TOKEN }} --confirm
+        run: vercel --prod --token=${{ secrets.ZEVRIN_VERCEL_TOKEN }} --yes
