@@ -12,15 +12,24 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v4
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: '10.4.1'
+
       - name: Install Vercel CLI
         run: npm install -g vercel
 
       - name: Install Dependencies & Build
         working-directory: frontend
         run: |
-          npm install --legacy-peer-deps
-          npm run build
+          pnpm install
+          pnpm run build
 
       - name: Deploy to Vercel
-        working-directory: frontend
         run: vercel --prod --token=${{ secrets.ZEVRIN_VERCEL_TOKEN }} --confirm
