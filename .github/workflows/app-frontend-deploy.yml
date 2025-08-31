@@ -23,4 +23,4 @@ jobs:
 
       - name: Deploy to Vercel
         working-directory: frontend
-        run: vercel --prod --token=${{ secrets.ZEVRIN_VERCEL_TOKEN }} --cwd=frontend --confirm
+        run: vercel --prod --token=${{ secrets.ZEVRIN_VERCEL_TOKEN }} --confirm
