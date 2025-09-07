@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { appname as AppName, LogoIcon } from "@/constants/app";
@@ -11,7 +12,7 @@ const Footer = () => {
       <div className="flex flex-col p-5 md:flex-row justify-center mt-5 space-x-0 md:space-x-8 space-y-4 md:space-y-0">
         <div className="flex flex-col w-[50%] md:w-1/3">
           <div className="flex flex-row px-4 items-center">
-            <img src={LogoIcon} className="w-12 aspect-square " />
+            <Image src={LogoIcon} alt="Zevrin Logo" className="w-12 aspect-square" width={48} height={48} />
             <h2 className="text-2xl px-4 text-left font-semibold">{AppName}</h2>
           </div>
           <p className="text-sm mt-5 px-4 text-left text-gray-400">
