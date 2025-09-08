@@ -12,7 +12,7 @@
     "format:check": "prettier --check ."
   },
   "engines": {
-    "node": "18.x"
+    "node": "22.x"
   },
   "dependencies": {
     "@hookform/resolvers": "^4.1.3",
@@ -75,7 +75,7 @@
     "vite": "^6.2.0",
     "vite-plugin-node-polyfills": "^0.23.0"
   },
-  "packageManager": "pnpm@10.4.1+sha512.c753b6c3ad7afa13af388fa6d808035a008e30ea9993f58c6663e2bc5ff21679aa834db094987129aa4d488b86df57f7b634981b2f827cdcacc698cc0cfb88af",
+  "packageManager": "pnpm@10.15.1",
   "pnpm": {
     "ignoredBuiltDependencies": [
       "@tailwindcss/oxide",
