@@ -1,15 +1,4 @@
-# Zevrin
-
-<table border="0">
-<tr>
-<td width="120">
-  <img src="https://raw.githubusercontent.com/Aswajith7077/Zevrin/main/frontend/public/Zevrin.svg" alt="Zevrin Logo" width="120"/>
-</td>
-<td>
-  <b>A scalable backend for trading consumer goods with dealer connections and credit score integration.</b>
-</td>
-</tr>
-</table>
+# Shopnex
 
 [![Repo Type](https://img.shields.io/badge/Repo-Monorepo-blue)](#)
 [![Frontend](https://img.shields.io/badge/Frontend-React-%2361DAFB)](#)
